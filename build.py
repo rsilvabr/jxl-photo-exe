@@ -11,6 +11,7 @@ pinned Python packages and PyInstaller, so the system Python is not touched.
 
 import hashlib
 import io
+import os
 import re
 import shutil
 import subprocess
@@ -21,6 +22,8 @@ from pathlib import Path
 
 # --- settings --------------------------------------------------------------
 JXLPHOTO_TAG = "v2.15.2"
+# Package revision for this jxl-photo tag: v2.15.2 + 1 -> release "v2.15.2-exe1".
+PACKAGE_REVISION = 1
 TOOLS = {
     "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.12.0/"
                "jxl-x64-windows-static.7z",
@@ -44,6 +47,15 @@ SCRIPT_NAMES = ["jxl_tiff_encoder.py", "jxl_tiff_decoder.py", "jxl_recompressor.
                 "jxl_jpeg_transcoder.py", "jxl_photo.py"]
 
 
+def rmtree(path):
+    """shutil.rmtree that also removes read-only files (ExifTool's archive
+    marks some of its files read-only, and copies keep the attribute)."""
+    def _clear(func, p, _exc):
+        os.chmod(p, 0o666)
+        func(p)
+    shutil.rmtree(path, onexc=_clear)
+
+
 def step(msg):
     print(f"\n== {msg}", flush=True)
 
@@ -65,7 +77,7 @@ def fetch(url, dest, sha256=None):
 
 def extract(archive, into):
     if into.exists():
-        shutil.rmtree(into)
+        rmtree(into)
     into.mkdir(parents=True)
     subprocess.run([str(WINTAR), "-xf", str(archive), "-C", str(into)], check=True)
     return into
@@ -156,7 +168,7 @@ def version_info(version):
 def main():
     py = venv_python()
     if BUILD.exists():
-        shutil.rmtree(BUILD)
+        rmtree(BUILD)
     app = BUILD / "app"
     (app / "licenses").mkdir(parents=True)
     version = get_scripts(app)
@@ -169,14 +181,18 @@ def main():
                     str(ROOT / "jxl-photo.spec")], check=True, cwd=ROOT)
 
     step("assemble")
-    out = DIST / f"jxl-photo-{version}-x64"
+    out = DIST / f"jxl-photo-{version}-exe{PACKAGE_REVISION}-x64"
     if out.exists():
-        shutil.rmtree(out)
+        rmtree(out)
     shutil.copytree(BUILD / "pyi_dist" / "jxl-photo", out)
     for sub in ("scripts", "tools", "licenses"):
         shutil.copytree(app / sub, out / sub)
     shutil.copy2(ROOT / "LICENSE", out / "licenses" / "LICENSE.jxl-photo-exe")
     shutil.copy2(ROOT / "README.md", out / "README.md")
+    # No read-only files in the package: an update unzips over the old folder.
+    for f in out.rglob("*"):
+        if f.is_file():
+            os.chmod(f, 0o666)
     z = shutil.make_archive(str(out), "zip", out.parent, out.name)
     size = sum(f.stat().st_size for f in out.rglob("*") if f.is_file())
     print(f"\nBuilt {out} ({size / 1e6:.0f} MB) and {Path(z).name} "
