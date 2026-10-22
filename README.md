@@ -1,4 +1,4 @@
-# jxl-photo-exe — jxl-photo as a Windows program (experimental)
+# jxl-photo-exe — jxl-photo as a Windows program
 
 [jxl-photo](https://github.com/rsilvabr/jxl-photo) packaged as `jxl-photo.exe`:
 no Python to install, and the tools it calls (cjxl/djxl, ExifTool,
@@ -7,11 +7,11 @@ ImageMagick) come in the same folder. Unzip and run.
 > **If you can use Python, use the Python version.**
 > [jxl-photo](https://github.com/rsilvabr/jxl-photo) itself is what its author
 > runs on their own photo archive every day, so it is by far the more tested
-> of the two. Both pass the same real-photo test battery, but the program
-> here is a newer, experimental way of packaging it. It is meant for people
-> who would rather not install Python and the tools themselves.
+> of the two. Both pass the same real-photo test battery; the program here
+> is a newer way of packaging the same scripts, meant for people who would
+> rather not install Python and the tools themselves.
 
-**Current version: v2.16.0-exe1** (2026-10-22) · packages jxl-photo
+**Current version: v2.16.0-exe2** (2026-10-22) · packages jxl-photo
 [v2.16.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.16.0) ·
 libjxl 0.12.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
 jxl-thumb 0.2.0 ·
@@ -195,7 +195,7 @@ presets end to end, kills runs in the middle of a write, and checks the
 files on disk: colour profiles, pixels, metadata, the delete gates.
 The program itself runs from a copy in a folder named
 `吾妻山 [app] 100% & co` on a drive without 8.3 short names.
-`v2.16.0-exe1` passed all 116 checks in 1197 s.
+`v2.16.0-exe2` passed all 116 checks in 1274 s.
 
 The wizard was also driven key by key through a real console and a real
 double-click: the thumbnail offer (declined, remembered, accepted), a full

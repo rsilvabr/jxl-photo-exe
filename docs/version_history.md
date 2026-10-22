@@ -6,12 +6,22 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.16.0-exe1](#v2160-exe1)** | 2026-10-22 | v2.16.0 | jxl-photo v2.16.0 (Explorer thumbnails for lossless files) and jxl-thumb 0.2.0; offers the jxl-thumb update |
+| **[v2.16.0-exe2](#v2160-exe2)** | 2026-10-22 | v2.16.0 | First regular release (no longer a pre-release); Python's license in the package |
+| [v2.16.0-exe1](#v2160-exe1) | 2026-10-22 | v2.16.0 | jxl-photo v2.16.0 (Explorer thumbnails for lossless files) and jxl-thumb 0.2.0; offers the jxl-thumb update |
 | [v2.15.2-exe3](#v2152-exe3) | 2026-10-22 | v2.15.2 | The thumbnail offer also replaces Microsoft's slow handler |
 | [v2.15.2-exe2](#v2152-exe2) | 2026-10-22 | v2.15.2 | Explorer thumbnails: jxl-thumb included; ExifTool in a non-ANSI program folder |
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.16.0-exe2
+
+*2026-10-22* — the first regular release; the earlier packages were
+pre-releases.
+
+- Same program as exe1 (jxl-photo v2.16.0, jxl-thumb 0.2.0, the same tools).
+- `licenses\` now also holds Python's own license (PSF): PyInstaller bundles
+  the runtime without it.
 
 ## v2.16.0-exe1
 
