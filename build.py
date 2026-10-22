@@ -207,6 +207,8 @@ def main():
     for sub in ("scripts", "tools", "licenses"):
         shutil.copytree(app / sub, out / sub)
     shutil.copy2(ROOT / "LICENSE", out / "licenses" / "LICENSE.jxl-photo-exe")
+    # PyInstaller bundles the Python runtime but not its license (PSF).
+    shutil.copy2(Path(sys.base_prefix) / "LICENSE.txt", out / "licenses" / "LICENSE.python.txt")
     shutil.copy2(ROOT / "README.md", out / "README.md")
     # No read-only files or folders in the package (ExifTool's archive marks
     # some): an update unzips over the old folder, and a copy must be deletable.

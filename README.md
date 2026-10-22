@@ -158,7 +158,7 @@ the thumbnail offer is kept in `%LOCALAPPDATA%\jxl-photo\exe.json`.
 | `tools\exiftool\` | ExifTool 13.59 (Windows build) |
 | `tools\imagemagick\` | `magick.exe` 7.1.2-27 portable (Q16-HDRI) and its configuration |
 | `tools\jxl-thumb\` | jxl-thumb 0.2.0 (Explorer thumbnails), with its own install/uninstall scripts |
-| `licenses\` | The licenses of everything above |
+| `licenses\` | The licenses of everything above, Python's included (gathered by `build.py` from each download, so the folder is in the package, not in this repository) |
 
 The program always uses its own tools, even when other versions are
 installed on the PC: jxl-photo was tested with exactly these.
