@@ -48,6 +48,38 @@ start inherit the same `PATH`.
 | cjxl, djxl, jxlinfo | libjxl 0.12.0 official `jxl-x64-windows-static.7z` | static, no DLLs |
 | ExifTool 13.59 | the official Windows build | `exiftool(-k).exe` is renamed `exiftool.exe`: the `(-k)` name waits for a key press after every call |
 | ImageMagick 7.1.2-27 | official portable Q16-HDRI x64 | only `magick.exe` and its `.xml`/`.icc` configuration; the other programs in the archive are aliases of it |
+| jxl-thumb 0.1.1 | its GitHub release zip | not on `PATH`: an Explorer thumbnail handler, installed only on request (below) |
+
+ExifTool's Windows launcher finds its `exiftool_files` folder through an
+ANSI path, so it cannot start from a folder whose name is outside the ANSI
+code page ([bug #1](bug_tracking.md)). When `tools\exiftool` is such a
+folder, the launcher puts the folder's 8.3 short name on `PATH` instead;
+on a drive without short names it copies ExifTool once (about 30 MB) to
+`%LOCALAPPDATA%\jxl-photo\exiftool-<version>` (or `%ProgramData%`, or the
+system drive: the first ANSI-safe one) and uses that copy. `build.py`
+writes the version into `tools\exiftool\VERSION.txt` for the folder name.
+
+## Explorer thumbnails
+
+`jxl-photo.exe thumbnails install` does what jxl-thumb's own `install.cmd`
+does, in Python instead of a batch file (a program folder named with `%` or
+`&` would break `cmd.exe`): it copies `tools\jxl-thumb\jxl_thumb.dll` to
+`%LOCALAPPDATA%\jxl-thumb`, renaming a DLL Explorer still holds open to
+`*.old` first, and registers the copy with `regsvr32 /s`. The DLL registers
+itself under `HKEY_CURRENT_USER\Software\Classes` only. `uninstall` runs
+`regsvr32 /u /s` and deletes the folder; `status` reads which handler
+`HKEY_CLASSES_ROOT\.jxl\ShellEx\{e357fccd-a995-4576-b01f-234630154e96}`
+(or the same key under `SystemFileAssociations`) names.
+
+Started with no arguments, the launcher checks that key before the wizard.
+When no handler is registered at all it asks once whether to install
+jxl-thumb, and stores the answer in `%LOCALAPPDATA%\jxl-photo\exe.json`
+(`thumbnail_offer_answered`). A handler already there, such as Microsoft's
+JPEG XL extension, is never replaced unasked. While no handler is
+registered it also sets `JXLPHOTO_THUMBNAIL_TIP`, so the wizard's own tip
+(jxl-photo 2.15.3 and later) names `jxl-photo.exe thumbnails install`
+instead of the jxl-thumb download page. Without a console (stdin not a
+terminal) nothing is asked.
 
 ## Logs
 

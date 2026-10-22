@@ -23,7 +23,7 @@ from pathlib import Path
 # --- settings --------------------------------------------------------------
 JXLPHOTO_TAG = "v2.15.2"
 # Package revision for this jxl-photo tag: v2.15.2 + 1 -> release "v2.15.2-exe1".
-PACKAGE_REVISION = 1
+PACKAGE_REVISION = 2
 TOOLS = {
     "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.12.0/"
                "jxl-x64-windows-static.7z",
@@ -34,6 +34,9 @@ TOOLS = {
     "imagemagick": ("https://github.com/ImageMagick/ImageMagick/releases/download/"
                     "7.1.2-27/ImageMagick-7.1.2-27-portable-Q16-HDRI-x64.7z",
                     "c7d6f13b3021db5d2e23876d85f06d6039a9a345236f0d32cdb73886ddfe70ed"),
+    "jxl-thumb": ("https://github.com/rsilvabr/jxl-thumb/releases/download/v0.1.1/"
+                  "jxl-thumb-0.1.1-x64.zip",
+                  "9f4e7e18b4cfd14ab4739ba463914510f62e29d7cf9c20b35efa9f40c93418d9"),
 }
 REQUIREMENTS = ["numpy==2.5.1", "tifffile==2026.6.1", "imagecodecs==2026.6.26",
                 "pillow==12.3.0", "rich==15.0.0", "pyinstaller==6.22.2"]
@@ -116,7 +119,7 @@ def get_scripts(app):
 
 
 def get_tools(app):
-    step("tools (libjxl, exiftool, ImageMagick)")
+    step("tools (libjxl, exiftool, ImageMagick, jxl-thumb)")
     tools, lic = app / "tools", app / "licenses"
     url, sha = TOOLS["libjxl"]
     x = extract(fetch(url, DEPS / "jxl-x64-windows-static.7z", sha), BUILD / "x_libjxl")
@@ -136,6 +139,10 @@ def get_tools(app):
     # Renamed: exiftool(-k).exe waits for a key press after every call.
     shutil.copy2(src / "exiftool(-k).exe", d / "exiftool.exe")
     shutil.copy2(src / "README.txt", lic / "exiftool-README.txt")
+    # Names the copy the launcher makes when the program folder is not
+    # ANSI-safe (see _exiftool_dir in src/jxl_photo_exe.py).
+    ver = re.search(r"exiftool-([\d.]+)_", url).group(1)
+    (d / "VERSION.txt").write_text(ver + "\n", encoding="utf-8")
 
     url, sha = TOOLS["imagemagick"]
     x = extract(fetch(url, DEPS / Path(url).name, sha), BUILD / "x_imagemagick")
@@ -148,6 +155,18 @@ def get_tools(app):
             shutil.copy2(f, d / f.name)
     shutil.copy2(src / "LICENSE.txt", lic / "LICENSE.imagemagick.txt")
     shutil.copy2(src / "NOTICE.txt", lic / "NOTICE.imagemagick.txt")
+
+    url, sha = TOOLS["jxl-thumb"]
+    x = extract(fetch(url, DEPS / Path(url).name, sha), BUILD / "x_jxl-thumb")
+    src = next(x.rglob("jxl_thumb.dll")).parent
+    d = tools / "jxl-thumb"
+    d.mkdir()
+    # The launcher installs the DLL itself ('jxl-photo.exe thumbnails install');
+    # the batch files stay for anyone who prefers jxl-thumb's own.
+    for name in ("jxl_thumb.dll", "install.cmd", "uninstall.cmd",
+                 "clear_thumbnail_cache.cmd", "README.md"):
+        shutil.copy2(src / name, d / name)
+    shutil.copy2(src / "LICENSE", lic / "LICENSE.jxl-thumb")
 
 
 def version_info(version):
@@ -189,10 +208,10 @@ def main():
         shutil.copytree(app / sub, out / sub)
     shutil.copy2(ROOT / "LICENSE", out / "licenses" / "LICENSE.jxl-photo-exe")
     shutil.copy2(ROOT / "README.md", out / "README.md")
-    # No read-only files in the package: an update unzips over the old folder.
+    # No read-only files or folders in the package (ExifTool's archive marks
+    # some): an update unzips over the old folder, and a copy must be deletable.
     for f in out.rglob("*"):
-        if f.is_file():
-            os.chmod(f, 0o666)
+        os.chmod(f, 0o666 if f.is_file() else 0o777)
     z = shutil.make_archive(str(out), "zip", out.parent, out.name)
     size = sum(f.stat().st_size for f in out.rglob("*") if f.is_file())
     print(f"\nBuilt {out} ({size / 1e6:.0f} MB) and {Path(z).name} "
