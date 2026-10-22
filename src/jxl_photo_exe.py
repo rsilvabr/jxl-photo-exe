@@ -240,13 +240,39 @@ def _load_state() -> dict:
         return {}
 
 
+def _dll_version(path: Path):
+    """(major, minor, patch) from a DLL's version resource, or None."""
+    import ctypes
+    from ctypes import wintypes
+    try:
+        ver = ctypes.windll.version
+        size = ver.GetFileVersionInfoSizeW(str(path), None)
+        if not size:
+            return None
+        buf = ctypes.create_string_buffer(size)
+        if not ver.GetFileVersionInfoW(str(path), 0, size, buf):
+            return None
+        ptr, n = ctypes.c_void_p(), wintypes.UINT()
+        if not ver.VerQueryValueW(buf, "\\", ctypes.byref(ptr), ctypes.byref(n)):
+            return None
+        ffi = ctypes.cast(ptr, ctypes.POINTER(wintypes.DWORD * 13)).contents
+        ms, ls = ffi[2], ffi[3]                      # dwFileVersionMS / LS
+        return (ms >> 16, ms & 0xFFFF, ls >> 16)
+    except Exception:
+        return None
+
+
 def _offer_thumbnails() -> None:
     """Before the wizard: once, offer jxl-thumb when Explorer has no JXL
     thumbnail handler at all, or only Windows' own (Microsoft's JPEG XL
     extension, which ships with many Windows 11 installs: slow on large
-    photos and not colour-managed). Any other handler — jxl-thumb itself, or
-    one installed on purpose — is left alone."""
+    photos and not colour-managed); once per bundled version, offer the
+    update when the installed jxl-thumb is older than the bundled one. Any
+    other handler — one installed on purpose — is left alone."""
     handler = _thumbnail_handler()
+    if handler is not None and handler.lower() == JXL_THUMB_CLSID.lower():
+        _offer_thumbnail_update()
+        return
     if handler is None:
         # From now on the wizard's own tip (jxl-photo 2.15.3+) names the
         # bundled command instead of the jxl-thumb download page.
@@ -279,6 +305,36 @@ def _offer_thumbnails() -> None:
     if answer.startswith("y"):
         if _install_thumbnails() == 0:
             os.environ.pop("JXLPHOTO_THUMBNAIL_TIP", None)
+    print()
+
+
+
+def _offer_thumbnail_update() -> None:
+    """The installed jxl-thumb is older than the bundled one: ask once per
+    bundled version (state key thumbnail_update_answered)."""
+    installed = _dll_version(THUMB_DEST / "jxl_thumb.dll")
+    bundled = _dll_version(JXL_THUMB / "jxl_thumb.dll")
+    if not installed or not bundled or installed >= bundled:
+        return
+    state = _load_state()
+    label = ".".join(map(str, bundled))
+    if state.get("thumbnail_update_answered") == label or not sys.stdin.isatty():
+        return
+    print(f"jxl-thumb {'.'.join(map(str, installed))} is installed; this package comes with "
+          f"{label}.\nIt shows the thumbnail jxl-photo stores in lossless files in ~2 ms "
+          f"instead of\ndecoding the whole photo.")
+    try:
+        answer = input("Update it now? [Y/n]: ").strip().lower()
+    except EOFError:
+        return
+    state["thumbnail_update_answered"] = label
+    try:
+        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        STATE_FILE.write_text(json.dumps(state), encoding="utf-8")
+    except OSError:
+        pass
+    if not answer.startswith("n"):
+        _install_thumbnails()
     print()
 
 

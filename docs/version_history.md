@@ -6,11 +6,24 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.15.2-exe3](#v2152-exe3)** | 2026-10-22 | v2.15.2 | The thumbnail offer also replaces Microsoft's slow handler |
+| **[v2.16.0-exe1](#v2160-exe1)** | 2026-10-22 | v2.16.0 | jxl-photo v2.16.0 (Explorer thumbnails for lossless files) and jxl-thumb 0.2.0; offers the jxl-thumb update |
+| [v2.15.2-exe3](#v2152-exe3) | 2026-10-22 | v2.15.2 | The thumbnail offer also replaces Microsoft's slow handler |
 | [v2.15.2-exe2](#v2152-exe2) | 2026-10-22 | v2.15.2 | Explorer thumbnails: jxl-thumb included; ExifTool in a non-ANSI program folder |
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.16.0-exe1
+
+*2026-10-22* — pre-release.
+
+- jxl-photo [v2.16.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.16.0):
+  lossless outputs carry a small thumbnail that jxl-thumb shows in Explorer
+  in milliseconds; menu option 9 adds it to existing files.
+- jxl-thumb [0.2.0](https://github.com/rsilvabr/jxl-thumb/releases/tag/v0.2.0),
+  which reads that thumbnail.
+- When an older jxl-thumb is installed (from exe2/exe3), the first start
+  offers the update, once per version.
 
 ## v2.15.2-exe3
 

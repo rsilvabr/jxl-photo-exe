@@ -11,10 +11,10 @@ ImageMagick) come in the same folder. Unzip and run.
 > here is a newer, experimental way of packaging it. It is meant for people
 > who would rather not install Python and the tools themselves.
 
-**Current version: v2.15.2-exe3** (2026-10-22) · packages jxl-photo
-[v2.15.2](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.15.2) ·
+**Current version: v2.16.0-exe1** (2026-10-22) · packages jxl-photo
+[v2.16.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.16.0) ·
 libjxl 0.12.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
-jxl-thumb 0.1.1 ·
+jxl-thumb 0.2.0 ·
 [All releases](docs/version_history.md) · [How it works](docs/how_it_works.md) ·
 [Bug tracking](docs/bug_tracking.md)
 
@@ -101,7 +101,9 @@ The first double-click on `jxl-photo.exe` offers to install it, once
 handler at all or only Microsoft's JPEG XL extension (included in many
 Windows 11 installs: slow on large photos and not colour-managed, so
 ProPhoto and Adobe RGB photos look washed out). Any other handler, one you
-installed on purpose, is left alone. The same from a terminal:
+installed on purpose, is left alone. When the installed jxl-thumb is older
+than the one in the package, it offers the update, once per version. The
+same from a terminal:
 
 ```
 jxl-photo.exe thumbnails status       which handler Explorer uses for JXL
@@ -155,7 +157,7 @@ the thumbnail offer is kept in `%LOCALAPPDATA%\jxl-photo\exe.json`.
 | `tools\libjxl\` | `cjxl.exe`, `djxl.exe`, `jxlinfo.exe` — official libjxl 0.12.0 static build |
 | `tools\exiftool\` | ExifTool 13.59 (Windows build) |
 | `tools\imagemagick\` | `magick.exe` 7.1.2-27 portable (Q16-HDRI) and its configuration |
-| `tools\jxl-thumb\` | jxl-thumb 0.1.1 (Explorer thumbnails), with its own install/uninstall scripts |
+| `tools\jxl-thumb\` | jxl-thumb 0.2.0 (Explorer thumbnails), with its own install/uninstall scripts |
 | `licenses\` | The licenses of everything above |
 
 The program always uses its own tools, even when other versions are
@@ -193,7 +195,7 @@ presets end to end, kills runs in the middle of a write, and checks the
 files on disk: colour profiles, pixels, metadata, the delete gates.
 The program itself runs from a copy in a folder named
 `吾妻山 [app] 100% & co` on a drive without 8.3 short names.
-`v2.15.2-exe3` passed all 110 checks in 1041 s.
+`v2.16.0-exe1` passed all 116 checks in 1197 s.
 
 The wizard was also driven key by key through a real console and a real
 double-click: the thumbnail offer (declined, remembered, accepted), a full

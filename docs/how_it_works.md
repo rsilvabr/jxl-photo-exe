@@ -48,7 +48,7 @@ start inherit the same `PATH`.
 | cjxl, djxl, jxlinfo | libjxl 0.12.0 official `jxl-x64-windows-static.7z` | static, no DLLs |
 | ExifTool 13.59 | the official Windows build | `exiftool(-k).exe` is renamed `exiftool.exe`: the `(-k)` name waits for a key press after every call |
 | ImageMagick 7.1.2-27 | official portable Q16-HDRI x64 | only `magick.exe` and its `.xml`/`.icc` configuration; the other programs in the archive are aliases of it |
-| jxl-thumb 0.1.1 | its GitHub release zip | not on `PATH`: an Explorer thumbnail handler, installed only on request (below) |
+| jxl-thumb 0.2.0 | its GitHub release zip | not on `PATH`: an Explorer thumbnail handler, installed only on request (below) |
 
 ExifTool's Windows launcher finds its `exiftool_files` folder through an
 ANSI path, so it cannot start from a folder whose name is outside the ANSI
@@ -76,7 +76,11 @@ When no handler is registered at all, or only Windows' own
 (`{C7657C4A-9F68-40fa-A4DF-96BC08EB3551}`, the WIC thumbnail handler behind
 Microsoft's JPEG XL extension), it asks once whether to install jxl-thumb,
 and stores the answer in `%LOCALAPPDATA%\jxl-photo\exe.json`
-(`thumbnail_offer_answered`). Any other handler is never replaced unasked;
+(`thumbnail_offer_answered`). When the handler is jxl-thumb and the
+installed DLL (`%LOCALAPPDATA%\jxl-thumb\jxl_thumb.dll`) carries an older
+version resource than the bundled one, it offers the update instead, once
+per bundled version (`thumbnail_update_answered`). Any other handler is never
+replaced unasked;
 `thumbnails uninstall` removes only jxl-thumb's per-user registration, so
 Windows' handler comes back by itself. While no handler is registered it
 also sets `JXLPHOTO_THUMBNAIL_TIP`, so the wizard's own tip

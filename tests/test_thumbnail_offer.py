@@ -95,3 +95,34 @@ def test_closed_stdin_is_not_an_answer(launcher, monkeypatch):
     monkeypatch.setattr("builtins.input", lambda prompt="": (_ for _ in ()).throw(EOFError))
     exe._offer_thumbnails()
     assert not exe.STATE_FILE.exists(), "asked again next time"
+
+
+JXL_THUMB = "{EF830030-FBD6-4B62-BFD4-0DBD590D6135}"
+
+
+def _versions(monkeypatch, installed, bundled):
+    def fake(path):
+        return installed if exe.THUMB_DEST in Path(path).parents else bundled
+    monkeypatch.setattr(exe, "_dll_version", fake)
+
+
+def test_an_older_jxl_thumb_gets_the_update_offer_once(launcher, monkeypatch):
+    _versions(monkeypatch, (0, 1, 1), (0, 2, 0))
+    asked = launcher(handler=JXL_THUMB, answers=[""])        # Enter = yes
+    exe._offer_thumbnails()
+    assert len(asked) == 1 and launcher.installs == [1]
+    asked = launcher(handler=JXL_THUMB, answers=[])
+    exe._offer_thumbnails()
+    assert asked == [], "asked once per bundled version"
+    _versions(monkeypatch, (0, 1, 1), (0, 3, 0))
+    asked = launcher(handler=JXL_THUMB, answers=["n"])
+    exe._offer_thumbnails()
+    assert len(asked) == 1 and launcher.installs == [1], "a newer bundle asks again; n = no"
+
+
+@pytest.mark.parametrize("installed", [(0, 2, 0), (0, 3, 0), None])
+def test_a_current_or_newer_jxl_thumb_is_left_alone(launcher, monkeypatch, installed):
+    _versions(monkeypatch, installed, (0, 2, 0))
+    asked = launcher(handler=JXL_THUMB)
+    exe._offer_thumbnails()
+    assert asked == [] and not launcher.installs
