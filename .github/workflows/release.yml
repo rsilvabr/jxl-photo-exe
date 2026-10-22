@@ -1,0 +1,75 @@
+# Builds the release zip on GitHub's own Windows machine, from the code of the
+# commit or tag being built, and records a build attestation for the zip and
+# jxl-photo.exe. Anyone can then check that a file came from here:
+#
+#   gh attestation verify jxl-photo-<version>-x64.zip --repo rsilvabr/jxl-photo-exe
+#
+# A pushed tag (vX.Y.Z-exeN) also creates a DRAFT release with the zip; the
+# real-photo battery runs against that zip before it is published (it needs
+# the author's photos, so it cannot run here). Run by hand (Actions tab, "Run
+# workflow"), it only builds and keeps the zip as a run artifact.
+
+name: Build release
+
+on:
+  push:
+    tags: ["v*-exe*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write       # create the draft release
+  id-token: write       # sign the attestation
+  attestations: write   # store it
+
+jobs:
+  build:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: The tag matches build.py
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          $b = Get-Content build.py -Raw
+          $tag = [regex]::Match($b, 'JXLPHOTO_TAG = "([^"]+)"').Groups[1].Value
+          $rev = [regex]::Match($b, 'PACKAGE_REVISION = (\d+)').Groups[1].Value
+          if ("$tag-exe$rev" -ne "${{ github.ref_name }}") { throw "tag ${{ github.ref_name }} but build.py makes $tag-exe$rev" }
+
+      - name: Build (build.py)
+        run: python build.py
+
+      - name: Unit tests
+        run: |
+          python -m pip install --quiet --disable-pip-version-check pytest
+          python -m pytest tests -q --ignore=tests/battery_on_exe.py
+
+      - name: SHA-256
+        shell: pwsh
+        run: Get-FileHash dist\*.zip, dist\*\jxl-photo.exe | Format-Table Hash, Path -AutoSize -Wrap
+
+      - uses: actions/attest-build-provenance@v4
+        with:
+          subject-path: |
+            dist/*.zip
+            dist/*/jxl-photo.exe
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: jxl-photo-exe-${{ github.ref_name }}
+          path: dist/*.zip
+          if-no-files-found: error
+
+      - name: Draft release
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" (Get-Item dist\*.zip).FullName --draft --verify-tag `
+            --title "${{ github.ref_name }}" `
+            --notes "Built by GitHub Actions from ${{ github.sha }}. Notes to follow."
