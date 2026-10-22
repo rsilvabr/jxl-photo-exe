@@ -6,10 +6,23 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.15.2-exe2](#v2152-exe2)** | 2026-10-22 | v2.15.2 | Explorer thumbnails: jxl-thumb included; ExifTool in a non-ANSI program folder |
+| **[v2.15.2-exe3](#v2152-exe3)** | 2026-10-22 | v2.15.2 | The thumbnail offer also replaces Microsoft's slow handler |
+| [v2.15.2-exe2](#v2152-exe2) | 2026-10-22 | v2.15.2 | Explorer thumbnails: jxl-thumb included; ExifTool in a non-ANSI program folder |
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.15.2-exe3
+
+*2026-10-22* — pre-release.
+
+- The thumbnail offer also appears when Explorer uses Microsoft's JPEG XL
+  extension, which many Windows 11 installs have out of the box: exe2
+  offered jxl-thumb only on PCs with no JXL thumbnails at all, so most
+  people never saw it. Once, as before; `thumbnails uninstall` brings
+  Windows' own handler back. A handler installed on purpose is still left
+  alone.
+- Everything else is unchanged from exe2.
 
 ## v2.15.2-exe2
 

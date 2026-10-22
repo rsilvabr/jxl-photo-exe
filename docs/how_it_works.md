@@ -72,11 +72,14 @@ itself under `HKEY_CURRENT_USER\Software\Classes` only. `uninstall` runs
 (or the same key under `SystemFileAssociations`) names.
 
 Started with no arguments, the launcher checks that key before the wizard.
-When no handler is registered at all it asks once whether to install
-jxl-thumb, and stores the answer in `%LOCALAPPDATA%\jxl-photo\exe.json`
-(`thumbnail_offer_answered`). A handler already there, such as Microsoft's
-JPEG XL extension, is never replaced unasked. While no handler is
-registered it also sets `JXLPHOTO_THUMBNAIL_TIP`, so the wizard's own tip
+When no handler is registered at all, or only Windows' own
+(`{C7657C4A-9F68-40fa-A4DF-96BC08EB3551}`, the WIC thumbnail handler behind
+Microsoft's JPEG XL extension), it asks once whether to install jxl-thumb,
+and stores the answer in `%LOCALAPPDATA%\jxl-photo\exe.json`
+(`thumbnail_offer_answered`). Any other handler is never replaced unasked;
+`thumbnails uninstall` removes only jxl-thumb's per-user registration, so
+Windows' handler comes back by itself. While no handler is registered it
+also sets `JXLPHOTO_THUMBNAIL_TIP`, so the wizard's own tip
 (jxl-photo 2.15.3 and later) names `jxl-photo.exe thumbnails install`
 instead of the jxl-thumb download page. Without a console (stdin not a
 terminal) nothing is asked.

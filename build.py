@@ -23,7 +23,7 @@ from pathlib import Path
 # --- settings --------------------------------------------------------------
 JXLPHOTO_TAG = "v2.15.2"
 # Package revision for this jxl-photo tag: v2.15.2 + 1 -> release "v2.15.2-exe1".
-PACKAGE_REVISION = 2
+PACKAGE_REVISION = 3
 TOOLS = {
     "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.12.0/"
                "jxl-x64-windows-static.7z",

@@ -11,7 +11,7 @@ ImageMagick) come in the same folder. Unzip and run.
 > here is a newer, experimental way of packaging it. It is meant for people
 > who would rather not install Python and the tools themselves.
 
-**Current version: v2.15.2-exe2** (2026-10-22) · packages jxl-photo
+**Current version: v2.15.2-exe3** (2026-10-22) · packages jxl-photo
 [v2.15.2](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.15.2) ·
 libjxl 0.12.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
 jxl-thumb 0.1.1 ·
@@ -96,10 +96,12 @@ The package comes with [jxl-thumb](https://github.com/rsilvabr/jxl-thumb),
 which shows them quickly and with correct colours, also for wide-gamut
 profiles such as ProPhoto and Adobe RGB.
 
-When Explorer has no JXL thumbnail handler at all, the first double-click on
-`jxl-photo.exe` offers to install it, once (`y`/`N`; the answer is
-remembered). If you already use another handler, for example Microsoft's
-JPEG XL extension, nothing is offered or replaced. The same from a terminal:
+The first double-click on `jxl-photo.exe` offers to install it, once
+(`y`/`N`; the answer is remembered), when Explorer has no JXL thumbnail
+handler at all or only Microsoft's JPEG XL extension (included in many
+Windows 11 installs: slow on large photos and not colour-managed, so
+ProPhoto and Adobe RGB photos look washed out). Any other handler, one you
+installed on purpose, is left alone. The same from a terminal:
 
 ```
 jxl-photo.exe thumbnails status       which handler Explorer uses for JXL
@@ -191,7 +193,7 @@ presets end to end, kills runs in the middle of a write, and checks the
 files on disk: colour profiles, pixels, metadata, the delete gates.
 The program itself runs from a copy in a folder named
 `吾妻山 [app] 100% & co` on a drive without 8.3 short names.
-`v2.15.2-exe2` passed all 110 checks in 999 s.
+`v2.15.2-exe3` passed all 110 checks in 1041 s.
 
 The wizard was also driven key by key through a real console and a real
 double-click: the thumbnail offer (declined, remembered, accepted), a full

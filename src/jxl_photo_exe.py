@@ -242,19 +242,30 @@ def _load_state() -> dict:
 
 def _offer_thumbnails() -> None:
     """Before the wizard: once, offer jxl-thumb when Explorer has no JXL
-    thumbnail handler at all. A handler already there (the Microsoft JPEG XL
-    extension, jxl-thumb) is never replaced unasked."""
-    if _thumbnail_handler() is not None:
+    thumbnail handler at all, or only Windows' own (Microsoft's JPEG XL
+    extension, which ships with many Windows 11 installs: slow on large
+    photos and not colour-managed). Any other handler — jxl-thumb itself, or
+    one installed on purpose — is left alone."""
+    handler = _thumbnail_handler()
+    if handler is None:
+        # From now on the wizard's own tip (jxl-photo 2.15.3+) names the
+        # bundled command instead of the jxl-thumb download page.
+        os.environ.setdefault("JXLPHOTO_THUMBNAIL_TIP", THUMB_TIP)
+        message = ("Windows Explorer shows no thumbnails for JXL files on this PC.\n"
+                   "jxl-photo comes with jxl-thumb, which adds them (for this Windows user only,\n"
+                   "no admin rights; 'jxl-photo.exe thumbnails uninstall' removes it).")
+    elif handler.lower() == WIC_THUMB_CLSID.lower():
+        message = ("Windows Explorer makes JXL thumbnails with Microsoft's JPEG XL extension:\n"
+                   "slow on large photos, and not colour-managed (ProPhoto and Adobe RGB\n"
+                   "photos look washed out). jxl-photo comes with jxl-thumb, which is much\n"
+                   "faster and converts the colours (for this Windows user only, no admin\n"
+                   "rights; 'jxl-photo.exe thumbnails uninstall' brings Windows' own back).")
+    else:
         return
-    # From now on the wizard's own tip (jxl-photo 2.15.3+) names the bundled
-    # command instead of the jxl-thumb download page.
-    os.environ.setdefault("JXLPHOTO_THUMBNAIL_TIP", THUMB_TIP)
     state = _load_state()
     if state.get("thumbnail_offer_answered") or not sys.stdin.isatty():
         return
-    print("Windows Explorer shows no thumbnails for JXL files on this PC.\n"
-          "jxl-photo comes with jxl-thumb, which adds them (for this Windows user only,\n"
-          "no admin rights; 'jxl-photo.exe thumbnails uninstall' removes it).")
+    print(message)
     try:
         answer = input("Install it now? [y/N]: ").strip().lower()
     except EOFError:
