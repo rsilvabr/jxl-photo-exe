@@ -1,0 +1,7 @@
+.venv/
+build/
+dist/
+deps/
+__pycache__/
+.claude/
+AI_tools/
