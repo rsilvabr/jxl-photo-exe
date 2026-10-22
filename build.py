@@ -21,9 +21,9 @@ import zipfile
 from pathlib import Path
 
 # --- settings --------------------------------------------------------------
-JXLPHOTO_TAG = "v2.16.0"
+JXLPHOTO_TAG = "v2.16.1"
 # Package revision for this jxl-photo tag: v2.16.0 + 1 -> release "v2.16.0-exe1".
-PACKAGE_REVISION = 2
+PACKAGE_REVISION = 1
 TOOLS = {
     "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.12.0/"
                "jxl-x64-windows-static.7z",
@@ -34,9 +34,9 @@ TOOLS = {
     "imagemagick": ("https://github.com/ImageMagick/ImageMagick/releases/download/"
                     "7.1.2-27/ImageMagick-7.1.2-27-portable-Q16-HDRI-x64.7z",
                     "c7d6f13b3021db5d2e23876d85f06d6039a9a345236f0d32cdb73886ddfe70ed"),
-    "jxl-thumb": ("https://github.com/rsilvabr/jxl-thumb/releases/download/v0.2.0/"
-                  "jxl-thumb-0.2.0-x64.zip",
-                  "815b6dc8108c569d652846019a97f95e78c27477fce5d5f667c459ea6ae8cf13"),
+    "jxl-thumb": ("https://github.com/rsilvabr/jxl-thumb/releases/download/v0.2.1/"
+                  "jxl-thumb-0.2.1-x64.zip",
+                  "fe924f2f065cd7c11c727d9455f60b6b3882c81df049ea119a6b0e5906a9e9dd"),
 }
 REQUIREMENTS = ["numpy==2.5.1", "tifffile==2026.6.1", "imagecodecs==2026.6.26",
                 "pillow==12.3.0", "rich==15.0.0", "pyinstaller==6.22.2"]

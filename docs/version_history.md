@@ -6,13 +6,32 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.16.0-exe2](#v2160-exe2)** | 2026-10-22 | v2.16.0 | First regular release (no longer a pre-release); Python's license in the package |
+| **[v2.16.1-exe1](#v2161-exe1)** | 2026-10-23 | v2.16.1 | Built by GitHub Actions with a build attestation; jxl-photo v2.16.1 and jxl-thumb 0.2.1 |
+| [v2.16.0-exe2](#v2160-exe2) | 2026-10-22 | v2.16.0 | First regular release (no longer a pre-release); Python's license in the package |
 | [v2.16.0-exe1](#v2160-exe1) | 2026-10-22 | v2.16.0 | jxl-photo v2.16.0 (Explorer thumbnails for lossless files) and jxl-thumb 0.2.0; offers the jxl-thumb update |
 | [v2.15.2-exe3](#v2152-exe3) | 2026-10-22 | v2.15.2 | The thumbnail offer also replaces Microsoft's slow handler |
 | [v2.15.2-exe2](#v2152-exe2) | 2026-10-22 | v2.15.2 | Explorer thumbnails: jxl-thumb included; ExifTool in a non-ANSI program folder |
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.16.1-exe1
+
+*2026-10-23*
+
+- **Built by GitHub Actions** from the tagged code
+  ([workflow](../.github/workflows/release.yml)), with the same `build.py`,
+  instead of on the author's PC; GitHub records a build attestation for the
+  zip and `jxl-photo.exe` (README, "Verifying a download"). The real-photo
+  battery ran against that zip before the release was published.
+- jxl-photo [v2.16.1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.16.1):
+  a run killed at an unlucky moment no longer leaves a temp file beside an
+  output. Found by this package's battery run (a v2.16.0-exe3 was built
+  and never released).
+- jxl-thumb [0.2.1](https://github.com/rsilvabr/jxl-thumb/releases/tag/v0.2.1):
+  the same code as 0.2.0, built by GitHub Actions with its own attestation.
+  With 0.2.0 installed, the first start offers the update once; thumbnails
+  stay the same either way.
 
 ## v2.16.0-exe2
 

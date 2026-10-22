@@ -11,10 +11,10 @@ ImageMagick) come in the same folder. Unzip and run.
 > is a newer way of packaging the same scripts, meant for people who would
 > rather not install Python and the tools themselves.
 
-**Current version: v2.16.0-exe2** (2026-10-22) · packages jxl-photo
-[v2.16.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.16.0) ·
+**Current version: v2.16.1-exe1** (2026-10-23) · packages jxl-photo
+[v2.16.1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.16.1) ·
 libjxl 0.12.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
-jxl-thumb 0.2.0 ·
+jxl-thumb 0.2.1 ·
 [All releases](docs/version_history.md) · [How it works](docs/how_it_works.md) ·
 [Bug tracking](docs/bug_tracking.md)
 
@@ -23,7 +23,7 @@ jxl-thumb 0.2.0 ·
 ## Contents
 
 - [What it is](#what-it-is)
-- [Download and first run](#download-and-first-run)
+- [Download and first run](#download-and-first-run) · [Verifying a download](#verifying-a-download)
 - [Command line](#command-line)
 - [Thumbnails in Explorer](#thumbnails-in-explorer)
 - [Where settings, presets and logs go](#where-settings-presets-and-logs-go)
@@ -62,6 +62,23 @@ this repository only packages it:
 
 The first time, Windows SmartScreen may say *"Windows protected your PC"*:
 the program is not code-signed. Choose **More info → Run anyway**.
+
+## Verifying a download
+
+Releases since v2.16.1-exe1 are built by GitHub Actions from the tagged code
+([workflow](.github/workflows/release.yml)), not on the author's PC, and
+GitHub records a build attestation for the zip and `jxl-photo.exe`. With the
+[GitHub CLI](https://cli.github.com/):
+
+```
+gh attestation verify jxl-photo-2.16.1-exe1-x64.zip --repo rsilvabr/jxl-photo-exe
+```
+
+It names the commit and the workflow run the file came from, and fails for a
+file that was not built there. The bundled `tools\jxl-thumb\jxl_thumb.dll`
+carries its own attestation (`--repo rsilvabr/jxl-thumb`), and every other
+tool is downloaded by `build.py` from its official release with a SHA-256
+check.
 
 ## Command line
 
@@ -157,7 +174,7 @@ the thumbnail offer is kept in `%LOCALAPPDATA%\jxl-photo\exe.json`.
 | `tools\libjxl\` | `cjxl.exe`, `djxl.exe`, `jxlinfo.exe` — official libjxl 0.12.0 static build |
 | `tools\exiftool\` | ExifTool 13.59 (Windows build) |
 | `tools\imagemagick\` | `magick.exe` 7.1.2-27 portable (Q16-HDRI) and its configuration |
-| `tools\jxl-thumb\` | jxl-thumb 0.2.0 (Explorer thumbnails), with its own install/uninstall scripts |
+| `tools\jxl-thumb\` | jxl-thumb 0.2.1 (Explorer thumbnails), with its own install/uninstall scripts |
 | `licenses\` | The licenses of everything above, Python's included (gathered by `build.py` from each download, so the folder is in the package, not in this repository) |
 
 The program always uses its own tools, even when other versions are
@@ -195,7 +212,8 @@ presets end to end, kills runs in the middle of a write, and checks the
 files on disk: colour profiles, pixels, metadata, the delete gates.
 The program itself runs from a copy in a folder named
 `吾妻山 [app] 100% & co` on a drive without 8.3 short names.
-`v2.16.0-exe2` passed all 116 checks in 1274 s.
+Each release runs it against the zip GitHub built, before the release is
+published; the release notes give the result.
 
 The wizard was also driven key by key through a real console and a real
 double-click: the thumbnail offer (declined, remembered, accepted), a full
@@ -214,6 +232,8 @@ It creates a virtual environment in `.venv` (pinned packages and
 PyInstaller), downloads the jxl-photo tag and the tools (each SHA-256
 checked), and writes `dist\jxl-photo-<version>-x64\` plus its zip. The
 jxl-photo tag and the tool versions are settings at the top of `build.py`.
+Releases run the same `build.py` on GitHub Actions when a `v*-exe*` tag is
+pushed.
 Details: [How it works](docs/how_it_works.md).
 
 ## License
