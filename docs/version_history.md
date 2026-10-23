@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.16.2-exe1](#v2162-exe1)** | 2026-10-23 | v2.16.2 | Built by GitHub Actions with a build attestation; jxl-photo v2.16.2 and jxl-thumb 0.2.1 |
+| **[v2.17.0-exe1](#v2170-exe1)** | 2026-10-24 | v2.17.0 | jxl-photo v2.17.0: film scans archived lossless and kept the way their scanner software expects them |
+| [v2.16.2-exe1](#v2162-exe1) | 2026-10-23 | v2.16.2 | Built by GitHub Actions with a build attestation; jxl-photo v2.16.2 and jxl-thumb 0.2.1 |
 | [v2.16.0-exe2](#v2160-exe2) | 2026-10-22 | v2.16.0 | First regular release (no longer a pre-release); Python's license in the package |
 | [v2.16.0-exe1](#v2160-exe1) | 2026-10-22 | v2.16.0 | jxl-photo v2.16.0 (Explorer thumbnails for lossless files) and jxl-thumb 0.2.0; offers the jxl-thumb update |
 | [v2.15.2-exe3](#v2152-exe3) | 2026-10-22 | v2.15.2 | The thumbnail offer also replaces Microsoft's slow handler |
@@ -14,6 +15,19 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.17.0-exe1
+
+*2026-10-24*
+
+- jxl-photo [v2.17.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.17.0):
+  film scans are archived lossless by default and the recompressor no longer
+  re-encodes them lossy unless asked; a SilverFast scan comes back with its
+  IR channel, dust removal and browser icon; thumbnail pages are kept by
+  default (except Capture One's); file names with a `%` keep their metadata.
+  Two defaults change: see its
+  [upgrading notes](https://github.com/rsilvabr/jxl-photo/blob/main/docs/upgrading.md#v2170-thumbnail-pages-are-kept-by-default-film-scans-are-lossless).
+- Same tools as v2.16.2-exe1 (libjxl, ExifTool, ImageMagick, jxl-thumb 0.2.1).
 
 ## v2.16.2-exe1
 
