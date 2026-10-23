@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SignPath artifact configuration for jxl-photo-exe (kept here for reference;
+  the active copy lives in the SignPath project). The release workflow uploads
+  only dist/<package>/jxl-photo.exe as a GitHub artifact, which GitHub zips:
+  the root is therefore a zip holding that one file. Only our own launcher is
+  signed; the bundled third-party tools (cjxl, djxl, exiftool, magick,
+  jxl-thumb) are never sent. Its version resource must name the product and
+  the jxl-photo version it carries.
+-->
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <parameters>
+    <parameter name="version" required="true" />
+  </parameters>
+  <zip-file>
+    <pe-file path="jxl-photo.exe" product-name="jxl-photo" product-version="${version}">
+      <authenticode-sign />
+    </pe-file>
+  </zip-file>
+</artifact-configuration>

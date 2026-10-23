@@ -8,6 +8,13 @@
 # real-photo battery runs against that zip before it is published (it needs
 # the author's photos, so it cannot run here). Run by hand (Actions tab, "Run
 # workflow"), it only builds and keeps the zip as a run artifact.
+#
+# Code signing (SignPath Foundation, see "Code signing policy" in the README):
+# on a tag, once the repository variable SIGNPATH_ORGANIZATION_ID and the
+# secret SIGNPATH_API_TOKEN exist, jxl-photo.exe (our launcher, and nothing
+# from the bundled tools) is sent for signing between the build and the zip.
+# A maintainer approves each request on SignPath; the job waits for it.
+# Without those settings the release is built unsigned.
 
 name: Build release
 
@@ -20,10 +27,13 @@ permissions:
   contents: write       # create the draft release
   id-token: write       # sign the attestation
   attestations: write   # store it
+  actions: read         # SignPath fetches the unsigned artifact
 
 jobs:
   build:
     runs-on: windows-2025
+    env:
+      SIGN: ${{ vars.SIGNPATH_ORGANIZATION_ID != '' && startsWith(github.ref, 'refs/tags/') }}
     steps:
       - uses: actions/checkout@v7
 
@@ -31,14 +41,21 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: The tag matches build.py
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Version (build.py)
+        id: version
         shell: pwsh
         run: |
           $b = Get-Content build.py -Raw
           $tag = [regex]::Match($b, 'JXLPHOTO_TAG = "([^"]+)"').Groups[1].Value
           $rev = [regex]::Match($b, 'PACKAGE_REVISION = (\d+)').Groups[1].Value
-          if ("$tag-exe$rev" -ne "${{ github.ref_name }}") { throw "tag ${{ github.ref_name }} but build.py makes $tag-exe$rev" }
+          "release=$tag-exe$rev" >> $env:GITHUB_OUTPUT
+          "product=$($tag.TrimStart('v'))" >> $env:GITHUB_OUTPUT
+
+      - name: The tag matches build.py
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          if ("${{ steps.version.outputs.release }}" -ne "${{ github.ref_name }}") { throw "tag ${{ github.ref_name }} but build.py makes ${{ steps.version.outputs.release }}" }
 
       - name: Build (build.py)
         run: python build.py
@@ -47,6 +64,40 @@ jobs:
         run: |
           python -m pip install --quiet --disable-pip-version-check pytest
           python -m pytest tests -q --ignore=tests/battery_on_exe.py
+
+      - name: Upload the unsigned jxl-photo.exe for signing
+        if: env.SIGN == 'true'
+        id: unsigned
+        uses: actions/upload-artifact@v7
+        with:
+          name: unsigned-exe
+          path: dist/*/jxl-photo.exe
+          if-no-files-found: error
+
+      - name: Sign (SignPath Foundation; waits for a maintainer's approval)
+        if: env.SIGN == 'true'
+        uses: signpath/github-action-submit-signing-request@v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG || 'jxl-photo-exe' }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG || 'release-signing' }}
+          github-artifact-id: ${{ steps.unsigned.outputs.artifact-id }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 3600
+          output-artifact-directory: signed
+          parameters: |
+            version: ${{ toJSON(steps.version.outputs.product) }}
+
+      - name: Put the signed jxl-photo.exe in place and repack
+        if: env.SIGN == 'true'
+        shell: pwsh
+        run: |
+          $s = Get-AuthenticodeSignature signed\jxl-photo.exe
+          if ($s.Status -ne 'Valid') { throw "signed exe: $($s.Status) $($s.StatusMessage)" }
+          "signed by: $($s.SignerCertificate.Subject)"
+          Copy-Item signed\jxl-photo.exe (Get-Item dist\*\jxl-photo.exe).FullName -Force
+          python build.py --repack
 
       - name: SHA-256
         shell: pwsh
