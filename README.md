@@ -11,8 +11,8 @@ ImageMagick) come in the same folder. Unzip and run.
 > is a newer way of packaging the same scripts, meant for people who would
 > rather not install Python and the tools themselves.
 
-**Current version: v2.16.1-exe1** (2026-10-23) · packages jxl-photo
-[v2.16.1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.16.1) ·
+**Current version: v2.16.2-exe1** (2026-10-23) · packages jxl-photo
+[v2.16.2](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.16.2) ·
 libjxl 0.12.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
 jxl-thumb 0.2.1 ·
 [All releases](docs/version_history.md) · [How it works](docs/how_it_works.md) ·
@@ -65,13 +65,13 @@ the program is not code-signed. Choose **More info → Run anyway**.
 
 ## Verifying a download
 
-Releases since v2.16.1-exe1 are built by GitHub Actions from the tagged code
+Releases since v2.16.2-exe1 are built by GitHub Actions from the tagged code
 ([workflow](.github/workflows/release.yml)), not on the author's PC, and
 GitHub records a build attestation for the zip and `jxl-photo.exe`. With the
 [GitHub CLI](https://cli.github.com/):
 
 ```
-gh attestation verify jxl-photo-2.16.1-exe1-x64.zip --repo rsilvabr/jxl-photo-exe
+gh attestation verify jxl-photo-2.16.2-exe1-x64.zip --repo rsilvabr/jxl-photo-exe
 ```
 
 It names the commit and the workflow run the file came from, and fails for a
