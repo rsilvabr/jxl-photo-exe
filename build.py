@@ -184,23 +184,7 @@ def version_info(version):
 """, encoding="utf-8")
 
 
-def repack():
-    """`python build.py --repack`: zip dist\\<package>\\ again, as it now stands.
-    The release workflow builds, has jxl-photo.exe signed, puts the signed
-    file back in the folder, then repacks."""
-    out = DIST / f"jxl-photo-{JXLPHOTO_TAG.lstrip('v')}-exe{PACKAGE_REVISION}-x64"
-    if not out.is_dir():
-        sys.exit(f"{out} does not exist: run python build.py first")
-    old = out.parent / (out.name + ".zip")    # not with_suffix: the name has dots
-    if old.exists():
-        old.unlink()
-    z = shutil.make_archive(str(out), "zip", out.parent, out.name)
-    print(f"Repacked {Path(z).name} ({Path(z).stat().st_size / 1e6:.0f} MB)")
-
-
 def main():
-    if "--repack" in sys.argv[1:]:
-        return repack()
     py = venv_python()
     if BUILD.exists():
         rmtree(BUILD)

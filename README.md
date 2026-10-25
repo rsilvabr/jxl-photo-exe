@@ -23,7 +23,7 @@ jxl-thumb 0.2.1 ·
 ## Contents
 
 - [What it is](#what-it-is)
-- [Download and first run](#download-and-first-run) · [Verifying a download](#verifying-a-download) · [Code signing policy](#code-signing-policy)
+- [Download and first run](#download-and-first-run) · [Verifying a download](#verifying-a-download)
 - [Command line](#command-line)
 - [Thumbnails in Explorer](#thumbnails-in-explorer)
 - [Where settings, presets and logs go](#where-settings-presets-and-logs-go)
@@ -79,33 +79,6 @@ file that was not built there. The bundled `tools\jxl-thumb\jxl_thumb.dll`
 carries its own attestation (`--repo rsilvabr/jxl-thumb`), and every other
 tool is downloaded by `build.py` from its official release with a SHA-256
 check.
-
-## Code signing policy
-
-jxl-photo-exe has applied for free code signing from
-[SignPath Foundation](https://signpath.org). Once that is granted, release
-builds of `jxl-photo.exe` are signed under this policy; until then they are
-unsigned (and still carry the build attestation above). Windows SmartScreen
-looks at that signature.
-
-Free code signing provided by [SignPath.io](https://about.signpath.io),
-certificate by [SignPath Foundation](https://signpath.org).
-
-- **What is signed:** only `jxl-photo.exe`, the launcher this repository
-  builds, by GitHub Actions from the tagged code
-  ([workflow](.github/workflows/release.yml)). The bundled third-party
-  programs (libjxl's tools, ExifTool, ImageMagick, the Python runtime) are
-  shipped exactly as their projects publish them and are never signed here;
-  jxl-thumb's DLL is signed, if at all, by its own project.
-- **Committers and reviewers:** [rsilvabr](https://github.com/rsilvabr), the
-  author. Changes from anyone else arrive as pull requests and are reviewed
-  before they are merged.
-- **Approvers:** [rsilvabr](https://github.com/rsilvabr) approves every signing
-  request, after the release build has passed the real-photo battery.
-- **Privacy:** this program will not transfer any information to other
-  networked systems unless specifically requested by the user or the person
-  installing or operating it. jxl-photo-exe makes no network connections: it
-  converts the files and folders you point it at, on your PC.
 
 ## Command line
 
