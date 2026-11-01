@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.18.0-exe1](#v2180-exe1)** | 2026-10-29 | v2.18.0 | jxl-photo v2.18.0: runs that delete TIFFs check every JXL's pixels first; hardening |
+| **[v2.18.1-exe1](#v2181-exe1)** | 2026-11-01 | v2.18.1 | jxl-photo v2.18.1: a recompressor sync plans only what it will process |
+| [v2.18.0-exe1](#v2180-exe1) | 2026-10-29 | v2.18.0 | jxl-photo v2.18.0: runs that delete TIFFs check every JXL's pixels first; hardening |
 | [v2.17.0-exe1](#v2170-exe1) | 2026-10-24 | v2.17.0 | jxl-photo v2.17.0: film scans archived lossless and kept the way their scanner software expects them |
 | [v2.16.2-exe1](#v2162-exe1) | 2026-10-23 | v2.16.2 | Built by GitHub Actions with a build attestation; jxl-photo v2.16.2 and jxl-thumb 0.2.1 |
 | [v2.16.0-exe2](#v2160-exe2) | 2026-10-22 | v2.16.0 | First regular release (no longer a pre-release); Python's license in the package |
@@ -16,6 +17,15 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.18.1-exe1
+
+*2026-11-01*
+
+- jxl-photo [v2.18.1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.18.1):
+  a recompressor sync skips files whose output is already up to date
+  without reading them first, so a scheduled sync starts converting sooner.
+- Same tools as v2.18.0-exe1 (libjxl, ExifTool, ImageMagick, jxl-thumb 0.2.1).
 
 ## v2.18.0-exe1
 
