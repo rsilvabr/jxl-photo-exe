@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.19.0-exe1](#v2190-exe1)** | 2026-11-02 | v2.19.0 | jxl-photo v2.19.0: the ICC profile's copy moves out of "creator software" into a jxl-photo marker |
+| **[v2.19.1-exe1](#v2191-exe1)** | 2026-11-02 | v2.19.1 | jxl-photo v2.19.1: IrfanView shows the EXIF of new JXLs again; older files repaired in place |
+| [v2.19.0-exe1](#v2190-exe1) | 2026-11-02 | v2.19.0 | jxl-photo v2.19.0: the ICC profile's copy moves out of "creator software" into a jxl-photo marker |
 | [v2.18.1-exe1](#v2181-exe1) | 2026-11-01 | v2.18.1 | jxl-photo v2.18.1: a recompressor sync plans only what it will process |
 | [v2.18.0-exe1](#v2180-exe1) | 2026-10-29 | v2.18.0 | jxl-photo v2.18.0: runs that delete TIFFs check every JXL's pixels first; hardening |
 | [v2.17.0-exe1](#v2170-exe1) | 2026-10-24 | v2.17.0 | jxl-photo v2.17.0: film scans archived lossless and kept the way their scanner software expects them |
@@ -18,6 +19,17 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.19.1-exe1
+
+*2026-11-02*
+
+- jxl-photo [v2.19.1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.19.1):
+  IrfanView shows the EXIF of new JXLs again (files written by v2.17.0 to
+  v2.19.0 had it after the XMP, where IrfanView does not look). Menu option 9
+  repairs older files in place without re-encoding. See its
+  [upgrading notes](https://github.com/rsilvabr/jxl-photo/blob/main/docs/upgrading.md#v2191-irfanview-shows-the-exif-again-repair-older-files-in-place).
+- Same tools as v2.19.0-exe1 (libjxl, ExifTool, ImageMagick, jxl-thumb 0.2.1).
 
 ## v2.19.0-exe1
 
