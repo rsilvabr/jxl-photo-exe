@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.19.2-exe1](#v2192-exe1)** | 2026-11-03 | v2.19.2 | jxl-photo v2.19.2: IrfanView shows the EXIF of JPEG → JXL files; older ones repaired in place |
+| **[v2.20.0-exe1](#v2200-exe1)** | 2026-11-04 | v2.20.0 | jxl-photo v2.20.0: hardening from a full read of the scripts; modes 6/7 skip the other scripts' folders |
+| [v2.19.2-exe1](#v2192-exe1) | 2026-11-03 | v2.19.2 | jxl-photo v2.19.2: IrfanView shows the EXIF of JPEG → JXL files; older ones repaired in place |
 | [v2.19.1-exe1](#v2191-exe1) | 2026-11-02 | v2.19.1 | jxl-photo v2.19.1: IrfanView shows the EXIF of new JXLs again; older files repaired in place |
 | [v2.19.0-exe1](#v2190-exe1) | 2026-11-02 | v2.19.0 | jxl-photo v2.19.0: the ICC profile's copy moves out of "creator software" into a jxl-photo marker |
 | [v2.18.1-exe1](#v2181-exe1) | 2026-11-01 | v2.18.1 | jxl-photo v2.18.1: a recompressor sync plans only what it will process |
@@ -20,6 +21,18 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.20.0-exe1
+
+*2026-11-04*
+
+- jxl-photo [v2.20.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.20.0):
+  hardening from a full read of the five scripts. An output whose provenance
+  record cannot be read is refused instead of overwritten; modes 6/7 of the
+  decoder and the recompressor skip the other scripts' output folders; the
+  planning phase reports progress. See its
+  [upgrading notes](https://github.com/rsilvabr/jxl-photo/blob/main/docs/upgrading.md#v2200-unreadable-provenance-records-are-refused-modes-67-skip-other-scripts-folders).
+- Same tools as v2.19.2-exe1 (libjxl, ExifTool, ImageMagick, jxl-thumb 0.2.1).
 
 ## v2.19.2-exe1
 
