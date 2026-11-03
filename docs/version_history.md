@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.20.0-exe1](#v2200-exe1)** | 2026-11-04 | v2.20.0 | jxl-photo v2.20.0: hardening from a full read of the scripts; modes 6/7 skip the other scripts' folders |
+| **[v2.21.0-exe1](#v2210-exe1)** | 2026-11-04 | v2.21.0 | jxl-photo v2.21.0: JPEG/PNG from cautious-strategy masters carry their real profile; less memory per worker |
+| [v2.20.0-exe1](#v2200-exe1) | 2026-11-04 | v2.20.0 | jxl-photo v2.20.0: hardening from a full read of the scripts; modes 6/7 skip the other scripts' folders |
 | [v2.19.2-exe1](#v2192-exe1) | 2026-11-03 | v2.19.2 | jxl-photo v2.19.2: IrfanView shows the EXIF of JPEG → JXL files; older ones repaired in place |
 | [v2.19.1-exe1](#v2191-exe1) | 2026-11-02 | v2.19.1 | jxl-photo v2.19.1: IrfanView shows the EXIF of new JXLs again; older files repaired in place |
 | [v2.19.0-exe1](#v2190-exe1) | 2026-11-02 | v2.19.0 | jxl-photo v2.19.0: the ICC profile's copy moves out of "creator software" into a jxl-photo marker |
@@ -21,6 +22,19 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.21.0-exe1
+
+*2026-11-04*
+
+- jxl-photo [v2.21.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.21.0):
+  the rest of the 2026-11-03 audit. A JXL → JPEG/PNG conversion of a master
+  that keeps its profile only in XMP (scanner and table-curve profiles)
+  carries that profile instead of an sRGB label; less memory per worker in
+  the encoder and the decoder; a failed metadata copy in a lossy conversion
+  keeps the source. See its
+  [upgrading notes](https://github.com/rsilvabr/jxl-photo/blob/main/docs/upgrading.md#v2210-lossy-jxl--jpegpng-keeps-the-masters-profile-metadata-failures-keep-the-source).
+- Same tools as v2.20.0-exe1 (libjxl, ExifTool, ImageMagick, jxl-thumb 0.2.1).
 
 ## v2.20.0-exe1
 
