@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.22.0-exe1](#v2220-exe1)** | 2026-11-04 | v2.22.0 | jxl-photo v2.22.0: the wizard by task, one review screen with every option; the program says when a newer package is out |
+| **[v2.22.1-exe1](#v2221-exe1)** | 2026-11-04 | v2.22.1 | jxl-photo v2.22.1: every wizard question on one question layer; same questions and command lines |
+| [v2.22.0-exe1](#v2220-exe1) | 2026-11-04 | v2.22.0 | jxl-photo v2.22.0: the wizard by task, one review screen with every option; the program says when a newer package is out |
 | [v2.21.0-exe1](#v2210-exe1) | 2026-11-04 | v2.21.0 | jxl-photo v2.21.0: JPEG/PNG from cautious-strategy masters carry their real profile; less memory per worker |
 | [v2.20.0-exe1](#v2200-exe1) | 2026-11-04 | v2.20.0 | jxl-photo v2.20.0: hardening from a full read of the scripts; modes 6/7 skip the other scripts' folders |
 | [v2.19.2-exe1](#v2192-exe1) | 2026-11-03 | v2.19.2 | jxl-photo v2.19.2: IrfanView shows the EXIF of JPEG → JXL files; older ones repaired in place |
@@ -23,6 +24,15 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.22.1-exe1
+
+*2026-11-04*
+
+- jxl-photo [v2.22.1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.22.1):
+  every wizard question goes through the same question layer as the New job;
+  same questions, same order, same command lines. Nothing to do.
+- Same tools as v2.22.0-exe1 (libjxl, ExifTool, ImageMagick, jxl-thumb 0.2.1).
 
 ## v2.22.0-exe1
 
