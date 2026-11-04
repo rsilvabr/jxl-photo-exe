@@ -35,6 +35,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
   the wizard names each distance it offers and the review shows the
   film-scan distance. Nothing to do. (v2.22.2-exe1 was built but never
   published.)
+- Rebuilt the same day after jxl-photo's v2.22.3 tag moved to a one-line
+  wording fix ("finest lossy" names what cjxl rounds).
 - Same tools as v2.22.1-exe1 (libjxl, ExifTool, ImageMagick, jxl-thumb 0.2.1).
 
 ## v2.22.1-exe1
