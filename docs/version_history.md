@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.22.5-exe1](#v2225-exe1)** | 2026-11-04 | v2.22.5 | jxl-photo v2.22.5: distances up to 25 (cjxl's own limit) |
+| **[v2.23.0-exe1](#v2230-exe1)** | 2026-11-05 | v2.23.0 | jxl-photo v2.23.0: faster derivatives, `--export-jpeg-folder`, the wizard in tables |
+| [v2.22.5-exe1](#v2225-exe1) | 2026-11-04 | v2.22.5 | jxl-photo v2.22.5: distances up to 25 (cjxl's own limit) |
 | [v2.22.4-exe1](#v2224-exe1) | 2026-11-04 | v2.22.4 | jxl-photo v2.22.4: named distances for smaller JXL copies too |
 | [v2.22.3-exe1](#v2223-exe1) | 2026-11-04 | v2.22.3 | jxl-photo v2.22.3: each distance named in the wizard; the film-scan distance on the review |
 | [v2.22.1-exe1](#v2221-exe1) | 2026-11-04 | v2.22.1 | jxl-photo v2.22.1: every wizard question on one question layer; same questions and command lines |
@@ -27,6 +28,16 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.23.0-exe1
+
+*2026-11-05*
+
+- jxl-photo [v2.23.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.23.0):
+  sRGB/resized derivatives about 35-40% faster, `--export-jpeg-folder` for
+  the JPEG/PNG folder of modes 6/7, the wizard's screens in tables, an update
+  check that never makes the menu wait. Nothing to do.
+- Same tools as v2.22.5-exe1.
 
 ## v2.22.5-exe1
 
