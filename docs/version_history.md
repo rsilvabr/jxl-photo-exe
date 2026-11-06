@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.24.0-exe2](#v2240-exe2)** | 2026-11-06 | v2.24.0 | jxl-thumb 0.2.2: `tools\jxl-thumb\enable_explorer_details.cmd` shows the photo details of .jxl files in Explorer |
+| **[v2.25.0-exe1](#v2250-exe1)** | 2026-11-06 | v2.25.0 | jxl-photo v2.25.0: the TIFF's byte order kept in masters, copies and decoded TIFFs; a new JPEG quality redoes the JPEG copies |
+| [v2.24.0-exe2](#v2240-exe2) | 2026-11-06 | v2.24.0 | jxl-thumb 0.2.2: `tools\jxl-thumb\enable_explorer_details.cmd` shows the photo details of .jxl files in Explorer |
 | [v2.24.0-exe1](#v2240-exe1) | 2026-11-06 | v2.24.0 | jxl-photo v2.24.0: the encode record leaves the Title, 8-bit TIFFs lossless at low distances, typical file sizes in the wizard |
 | [v2.23.0-exe1](#v2230-exe1) | 2026-11-05 | v2.23.0 | jxl-photo v2.23.0: faster derivatives, `--export-jpeg-folder`, the wizard in tables |
 | [v2.22.5-exe1](#v2225-exe1) | 2026-11-04 | v2.22.5 | jxl-photo v2.22.5: distances up to 25 (cjxl's own limit) |
@@ -30,6 +31,18 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.25.0-exe1
+
+*2026-11-06*
+
+- jxl-photo [v2.25.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.25.0):
+  a big-endian TIFF (SilverFast scans, some Mac programs) gives a big-endian
+  master and decodes back to a big-endian TIFF, and every copy keeps its
+  master's byte order; a resized or sharpened JPEG records its quality, so a
+  new quality redoes it on the next sync. See its
+  [Upgrading](https://github.com/rsilvabr/jxl-photo/blob/v2.25.0/docs/upgrading.md) notes.
+- Same tools as v2.24.0-exe2 (jxl-thumb 0.2.2).
 
 ## v2.24.0-exe2
 
