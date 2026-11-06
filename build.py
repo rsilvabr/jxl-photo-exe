@@ -23,7 +23,7 @@ from pathlib import Path
 # --- settings --------------------------------------------------------------
 JXLPHOTO_TAG = "v2.24.0"
 # Package revision for this jxl-photo tag: v2.16.0 + 1 -> release "v2.16.0-exe1".
-PACKAGE_REVISION = 1
+PACKAGE_REVISION = 2
 TOOLS = {
     "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.12.0/"
                "jxl-x64-windows-static.7z",
@@ -34,9 +34,9 @@ TOOLS = {
     "imagemagick": ("https://github.com/ImageMagick/ImageMagick/releases/download/"
                     "7.1.2-27/ImageMagick-7.1.2-27-portable-Q16-HDRI-x64.7z",
                     "c7d6f13b3021db5d2e23876d85f06d6039a9a345236f0d32cdb73886ddfe70ed"),
-    "jxl-thumb": ("https://github.com/rsilvabr/jxl-thumb/releases/download/v0.2.1/"
-                  "jxl-thumb-0.2.1-x64.zip",
-                  "fe924f2f065cd7c11c727d9455f60b6b3882c81df049ea119a6b0e5906a9e9dd"),
+    "jxl-thumb": ("https://github.com/rsilvabr/jxl-thumb/releases/download/v0.2.2/"
+                  "jxl-thumb-0.2.2-x64.zip",
+                  "27dc9295aa5c2b1347cace063bdca88d607c0f549dfc013abc4d0d26341c9dbc"),
 }
 REQUIREMENTS = ["numpy==2.5.1", "tifffile==2026.6.1", "imagecodecs==2026.6.26",
                 "pillow==12.3.0", "rich==15.0.0", "pyinstaller==6.22.2"]
@@ -164,7 +164,8 @@ def get_tools(app):
     # The launcher installs the DLL itself ('jxl-photo.exe thumbnails install');
     # the batch files stay for anyone who prefers jxl-thumb's own.
     for name in ("jxl_thumb.dll", "install.cmd", "uninstall.cmd",
-                 "clear_thumbnail_cache.cmd", "README.md"):
+                 "clear_thumbnail_cache.cmd", "enable_explorer_details.cmd",
+                 "disable_explorer_details.cmd", "explorer_details.ps1", "README.md"):
         shutil.copy2(src / name, d / name)
     shutil.copy2(src / "LICENSE", lic / "LICENSE.jxl-thumb")
 

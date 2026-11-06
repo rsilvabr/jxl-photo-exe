@@ -11,10 +11,10 @@ ImageMagick) come in the same folder. Unzip and run.
 > is a newer way of packaging the same scripts, meant for people who would
 > rather not install Python and the tools themselves.
 
-**Current version: v2.24.0-exe1** (2026-11-06) · packages jxl-photo
+**Current version: v2.24.0-exe2** (2026-11-06) · packages jxl-photo
 [v2.24.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.24.0) ·
 libjxl 0.12.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
-jxl-thumb 0.2.1 ·
+jxl-thumb 0.2.2 ·
 [All releases](docs/version_history.md) · [How it works](docs/how_it_works.md) ·
 [Bug tracking](docs/bug_tracking.md)
 
@@ -135,6 +135,12 @@ program folder does not break it) and registered under
 `install.cmd` does, and a jxl-thumb installed either way is the same
 install. Thumbnails Windows cached before stay until the cache is cleared:
 `tools\jxl-thumb\clear_thumbnail_cache.cmd`.
+
+Explorer shows only the size and dates of a `.jxl`, no camera, lens or ISO?
+On some Windows 11 builds `.jxl` has no property handler registered.
+`tools\jxl-thumb\enable_explorer_details.cmd` registers Windows' own one (it
+asks for administrator rights once); `disable_explorer_details.cmd` undoes it
+([details](https://github.com/rsilvabr/jxl-thumb#photo-details-in-explorer)).
 
 ## Where settings, presets and logs go
 

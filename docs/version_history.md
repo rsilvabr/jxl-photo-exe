@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.24.0-exe1](#v2240-exe1)** | 2026-11-06 | v2.24.0 | jxl-photo v2.24.0: the encode record leaves the Title, 8-bit TIFFs lossless at low distances, typical file sizes in the wizard |
+| **[v2.24.0-exe2](#v2240-exe2)** | 2026-11-06 | v2.24.0 | jxl-thumb 0.2.2: `tools\jxl-thumb\enable_explorer_details.cmd` shows the photo details of .jxl files in Explorer |
+| [v2.24.0-exe1](#v2240-exe1) | 2026-11-06 | v2.24.0 | jxl-photo v2.24.0: the encode record leaves the Title, 8-bit TIFFs lossless at low distances, typical file sizes in the wizard |
 | [v2.23.0-exe1](#v2230-exe1) | 2026-11-05 | v2.23.0 | jxl-photo v2.23.0: faster derivatives, `--export-jpeg-folder`, the wizard in tables |
 | [v2.22.5-exe1](#v2225-exe1) | 2026-11-04 | v2.22.5 | jxl-photo v2.22.5: distances up to 25 (cjxl's own limit) |
 | [v2.22.4-exe1](#v2224-exe1) | 2026-11-04 | v2.22.4 | jxl-photo v2.22.4: named distances for smaller JXL copies too |
@@ -29,6 +30,16 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.24.0-exe2
+
+*2026-11-06*
+
+- jxl-thumb [0.2.2](https://github.com/rsilvabr/jxl-thumb/releases/tag/v0.2.2):
+  the same thumbnails, plus `tools\jxl-thumb\enable_explorer_details.cmd`
+  (and `disable_explorer_details.cmd`), which make Explorer show a `.jxl`
+  file's camera, lens, ISO and date taken on Windows 11 builds that do not.
+- Same jxl-photo (v2.24.0) and other tools as v2.24.0-exe1.
 
 ## v2.24.0-exe1
 
