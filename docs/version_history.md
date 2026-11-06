@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.23.0-exe1](#v2230-exe1)** | 2026-11-05 | v2.23.0 | jxl-photo v2.23.0: faster derivatives, `--export-jpeg-folder`, the wizard in tables |
+| **[v2.24.0-exe1](#v2240-exe1)** | 2026-11-06 | v2.24.0 | jxl-photo v2.24.0: the encode record leaves the Title, 8-bit TIFFs lossless at low distances, typical file sizes in the wizard |
+| [v2.23.0-exe1](#v2230-exe1) | 2026-11-05 | v2.23.0 | jxl-photo v2.23.0: faster derivatives, `--export-jpeg-folder`, the wizard in tables |
 | [v2.22.5-exe1](#v2225-exe1) | 2026-11-04 | v2.22.5 | jxl-photo v2.22.5: distances up to 25 (cjxl's own limit) |
 | [v2.22.4-exe1](#v2224-exe1) | 2026-11-04 | v2.22.4 | jxl-photo v2.22.4: named distances for smaller JXL copies too |
 | [v2.22.3-exe1](#v2223-exe1) | 2026-11-04 | v2.22.3 | jxl-photo v2.22.3: each distance named in the wizard; the film-scan distance on the review |
@@ -28,6 +29,19 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.24.0-exe1
+
+*2026-11-06*
+
+- jxl-photo [v2.24.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.24.0):
+  the cjxl record no longer shows as the photo's Title in Explorer (it is
+  kept in the XMP History; `--encode-tag comment` or `title` show it), 8-bit
+  TIFFs are archived lossless at `d=0.1` and below, the wizard shows the
+  typical file size next to every distance, and the menu says when
+  jxl-thumb has a newer release. See its
+  [Upgrading](https://github.com/rsilvabr/jxl-photo/blob/v2.24.0/docs/upgrading.md) notes.
+- Same tools as v2.23.0-exe1.
 
 ## v2.23.0-exe1
 
