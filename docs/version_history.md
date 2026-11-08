@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.25.0-exe1](#v2250-exe1)** | 2026-11-06 | v2.25.0 | jxl-photo v2.25.0: the TIFF's byte order kept in masters, copies and decoded TIFFs; a new JPEG quality redoes the JPEG copies |
+| **[v2.25.1-exe1](#v2251-exe1)** | 2026-11-08 | v2.25.1 | jxl-photo v2.25.1: the new-release notice shown on the next start, `D` checks for a new package, a missing `TEMP_DIR` created by the JPEG transcoder too |
+| [v2.25.0-exe1](#v2250-exe1) | 2026-11-06 | v2.25.0 | jxl-photo v2.25.0: the TIFF's byte order kept in masters, copies and decoded TIFFs; a new JPEG quality redoes the JPEG copies |
 | [v2.24.0-exe2](#v2240-exe2) | 2026-11-06 | v2.24.0 | jxl-thumb 0.2.2: `tools\jxl-thumb\enable_explorer_details.cmd` shows the photo details of .jxl files in Explorer |
 | [v2.24.0-exe1](#v2240-exe1) | 2026-11-06 | v2.24.0 | jxl-photo v2.24.0: the encode record leaves the Title, 8-bit TIFFs lossless at low distances, typical file sizes in the wizard |
 | [v2.23.0-exe1](#v2230-exe1) | 2026-11-05 | v2.23.0 | jxl-photo v2.23.0: faster derivatives, `--export-jpeg-folder`, the wizard in tables |
@@ -31,6 +32,18 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.25.1-exe1
+
+*2026-11-08*
+
+- jxl-photo [v2.25.1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.25.1):
+  the "new package is out" line reaches you even when the window is closed
+  right after a job (the next start shows it, with the day it was checked);
+  `D` in the main menu also checks for a new package; a `TEMP_DIR` that does
+  not exist yet is created by the JPEG transcoder too. Nothing to do when
+  upgrading.
+- Same tools as v2.25.0-exe1 (jxl-thumb 0.2.2).
 
 ## v2.25.0-exe1
 
