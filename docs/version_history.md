@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.26.1-exe1](#v2261-exe1)** | 2026-11-10 | v2.26.1 | jxl-photo v2.26.1: PNGs and turned-back JPEGs keep the camera's `InteropIndex`; one exiftool run less per JXL → JPEG |
+| **[v2.27.0-exe1](#v2270-exe1)** | 2026-11-11 | v2.27.0 | jxl-photo v2.27.0: a TIFF's IPTC data reaches the master and comes back in the decoded TIFF; the encoder's sync skips a TIFF with a newer date and the same content |
+| [v2.26.1-exe1](#v2261-exe1) | 2026-11-10 | v2.26.1 | jxl-photo v2.26.1: PNGs and turned-back JPEGs keep the camera's `InteropIndex`; one exiftool run less per JXL → JPEG |
 | [v2.26.0-exe1](#v2260-exe1) | 2026-11-10 | v2.26.0 | jxl-photo v2.26.0: the JPEG of a rotated JPEG's archive comes back as the camera wrote it; JXL → PNG of camera JPEGs and resizing sources with the standard sRGB profile work |
 | [v2.25.3-exe1](#v2253-exe1) | 2026-11-10 | v2.25.3 | jxl-photo v2.25.3: a rotated JPEG's archive decodes upright; `--delete-source` keeps layered TIFFs and float/animated JXLs; a failed move out of staging is an error |
 | [v2.25.2-exe1](#v2252-exe1) | 2026-11-10 | v2.25.2 | jxl-photo v2.25.2: two runs at once never write over each other's output; a lossy decode with `--sync` leaves the camera's JPEG alone; flush to disk before every delete |
@@ -36,6 +37,19 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.27.0-exe1
+
+*2026-11-11*
+
+- jxl-photo [v2.27.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.27.0):
+  a TIFF's IPTC data is copied into the master's XMP where the XMP lacks it,
+  and the decoder writes the IPTC block back byte for byte; the encoder's
+  sync skips a TIFF whose date is newer but whose content is unchanged
+  (`--overwrite` remakes a master on purpose); a lossy JPEG → JXL of a JPEG
+  with a broken thumbnail IFD converts instead of ending in an error. See its
+  [upgrading notes](https://github.com/rsilvabr/jxl-photo/blob/v2.27.0/docs/upgrading.md).
+- Same tools as v2.26.1-exe1 (jxl-thumb 0.2.2).
 
 ## v2.26.1-exe1
 
