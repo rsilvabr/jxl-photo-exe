@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.25.1-exe1](#v2251-exe1)** | 2026-11-08 | v2.25.1 | jxl-photo v2.25.1: the new-release notice shown on the next start, `D` checks for a new package, a missing `TEMP_DIR` created by the JPEG transcoder too |
+| **[v2.25.2-exe1](#v2252-exe1)** | 2026-11-10 | v2.25.2 | jxl-photo v2.25.2: two runs at once never write over each other's output; a lossy decode with `--sync` leaves the camera's JPEG alone; flush to disk before every delete |
+| [v2.25.1-exe1](#v2251-exe1) | 2026-11-08 | v2.25.1 | jxl-photo v2.25.1: the new-release notice shown on the next start, `D` checks for a new package, a missing `TEMP_DIR` created by the JPEG transcoder too |
 | [v2.25.0-exe1](#v2250-exe1) | 2026-11-06 | v2.25.0 | jxl-photo v2.25.0: the TIFF's byte order kept in masters, copies and decoded TIFFs; a new JPEG quality redoes the JPEG copies |
 | [v2.24.0-exe2](#v2240-exe2) | 2026-11-06 | v2.24.0 | jxl-thumb 0.2.2: `tools\jxl-thumb\enable_explorer_details.cmd` shows the photo details of .jxl files in Explorer |
 | [v2.24.0-exe1](#v2240-exe1) | 2026-11-06 | v2.24.0 | jxl-photo v2.24.0: the encode record leaves the Title, 8-bit TIFFs lossless at low distances, typical file sizes in the wizard |
@@ -32,6 +33,17 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.25.2-exe1
+
+*2026-11-10*
+
+- jxl-photo [v2.25.2](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.25.2):
+  two runs started at the same time never write over each other's output;
+  a lossy JXL → JPEG/PNG run with `--sync` leaves a same-named camera
+  JPEG/PNG alone (`--overwrite` replaces it); every script flushes each
+  output to the disk before deleting its source.
+- Same tools as v2.25.1-exe1 (jxl-thumb 0.2.2).
 
 ## v2.25.1-exe1
 
