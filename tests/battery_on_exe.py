@@ -5,7 +5,7 @@
 Uses tools/real_photo_battery.py from a jxl-photo checkout (the sibling folder
 ../jxl-photo, or JXLPHOTO_REPO), unchanged: every script run goes through
 dist/jxl-photo-<version>-x64/jxl-photo.exe and its bundled scripts, and the
-only cjxl/djxl/exiftool/magick on PATH are the bundled ones (the battery's
+only cjxl/djxl/jxlinfo/exiftool/magick on PATH are the bundled ones (the battery's
 own checks use them too). The report lands in AI_tools/ of this repo.
 
 The program itself runs from a copy in a HOSTILE folder on the fixtures'
@@ -22,7 +22,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TOOL_EXES = ("cjxl.exe", "djxl.exe", "exiftool.exe", "magick.exe")
+TOOL_EXES = ("cjxl.exe", "djxl.exe", "jxlinfo.exe", "exiftool.exe", "magick.exe")
 
 
 def main():
