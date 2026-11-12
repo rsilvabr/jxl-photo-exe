@@ -1,5 +1,6 @@
-"""Builds dist/jxl-photo-<version>-x64.zip: jxl-photo.exe, the five scripts of
-a published jxl-photo tag, and the tools they call.
+"""Builds dist/jxl-photo-<version>-x64.zip: jxl-photo.exe, the scripts of a
+published jxl-photo tag (the five and the module they share), and the tools
+they call.
 
     python build.py            (Python 3.12 on PATH; first run ~5 minutes)
 
@@ -21,7 +22,7 @@ import zipfile
 from pathlib import Path
 
 # --- settings --------------------------------------------------------------
-JXLPHOTO_TAG = "v2.28.0"
+JXLPHOTO_TAG = "v2.29.0_beta1"
 # Package revision for this jxl-photo tag: v2.16.0 + 1 -> release "v2.16.0-exe1".
 PACKAGE_REVISION = 1
 TOOLS = {
@@ -47,7 +48,10 @@ DEPS, BUILD, DIST = ROOT / "deps", ROOT / "build", ROOT / "dist"
 VENV = ROOT / ".venv"
 WINTAR = Path(r"C:\Windows\System32\tar.exe")   # bsdtar: reads .zip and .7z
 SCRIPT_NAMES = ["jxl_tiff_encoder.py", "jxl_tiff_decoder.py", "jxl_recompressor.py",
-                "jxl_jpeg_transcoder.py", "jxl_photo.py"]
+                "jxl_jpeg_transcoder.py", "jxl_photo.py",
+                # The code the five share (jxl-photo v2.29.0 on): each script
+                # loads the copy next to it and refuses to start without it.
+                "jxl_photo_common.py"]
 
 
 def rmtree(path):
@@ -171,7 +175,10 @@ def get_tools(app):
 
 
 def version_info(version):
-    nums = (version.split(".") + ["0", "0", "0"])[:3] + ["0"]
+    # Numbers only: a pre-release ("2.29.0_beta1") keeps its name in the
+    # strings below, and "0_beta1" is not a number PyInstaller can read.
+    nums = [re.match(r"\d*", part).group() or "0"
+            for part in (version.split(".") + ["0", "0", "0"])[:3]] + ["0"]
     (BUILD / "version_info.txt").write_text(f"""VSVersionInfo(
   ffi=FixedFileInfo(filevers=({','.join(nums)}), prodvers=({','.join(nums)})),
   kids=[StringFileInfo([StringTable('040904B0', [

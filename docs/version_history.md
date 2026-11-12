@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.28.0-exe1](#v2280-exe1)** | 2026-11-11 | v2.28.0 | jxl-photo v2.28.0: a TIFF's small Photoshop resource block comes back in the decoded TIFF; JPEG/PNG copies drop the TIFF-tag markers; no copy of a camera TIFF's thumbnail page; resized copies work in a folder named like `100%off` |
+| **[v2.29.0_beta1-exe1](#v2290_beta1-exe1)** | 2026-11-12 | v2.29.0_beta1 | Pre-release. jxl-photo v2.29.0_beta1: the code the scripts share ships as a sixth file, `scripts\jxl_photo_common.py`; nothing changes in what the program does |
+| [v2.28.0-exe1](#v2280-exe1) | 2026-11-11 | v2.28.0 | jxl-photo v2.28.0: a TIFF's small Photoshop resource block comes back in the decoded TIFF; JPEG/PNG copies drop the TIFF-tag markers; no copy of a camera TIFF's thumbnail page; resized copies work in a folder named like `100%off` |
 | [v2.27.1-exe1](#v2271-exe1) | 2026-11-11 | v2.27.1 | jxl-photo v2.27.1: a lossy JPEG → JXL keeps a JPEG whose HDR gain map (Ultra HDR phone photos) the JXL does not hold |
 | [v2.27.0-exe1](#v2270-exe1) | 2026-11-11 | v2.27.0 | jxl-photo v2.27.0: a TIFF's IPTC data reaches the master and comes back in the decoded TIFF; the encoder's sync skips a TIFF with a newer date and the same content |
 | [v2.26.1-exe1](#v2261-exe1) | 2026-11-10 | v2.26.1 | jxl-photo v2.26.1: PNGs and turned-back JPEGs keep the camera's `InteropIndex`; one exiftool run less per JXL → JPEG |
@@ -39,6 +40,22 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.29.0_beta1-exe1
+
+*2026-11-12, pre-release. The last stable package is v2.28.0-exe1.*
+
+- jxl-photo [v2.29.0_beta1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.29.0_beta1):
+  the code its five scripts share now lives in one file,
+  `jxl_photo_common.py`, which ships next to them in `scripts\`. Nothing
+  changes in what the program does with your photos, and there is nothing to
+  do: unzip over the old folder as usual.
+- The build takes that sixth file from the jxl-photo tag and checks its
+  version like the others; the test battery checks that the program runs the
+  copy in `scripts\` (with the file moved aside, it refuses to start).
+- The build accepts a pre-release version name (the `.exe`'s numeric version
+  is 2.29.0.0; its version text says `2.29.0_beta1`).
+- Same tools as v2.28.0-exe1 (jxl-thumb 0.2.2).
 
 ## v2.28.0-exe1
 

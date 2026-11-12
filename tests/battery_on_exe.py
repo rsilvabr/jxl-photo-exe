@@ -18,11 +18,37 @@ copy. --ascii-app runs it from dist/ instead.
 import argparse
 import os
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TOOL_EXES = ("cjxl.exe", "djxl.exe", "jxlinfo.exe", "exiftool.exe", "magick.exe")
+
+
+def _check_common_module(exe, scripts):
+    """jxl-photo v2.29.0 on: the scripts load jxl_photo_common.py from
+    scripts\\. The program must run THAT copy: with the file moved aside it
+    refuses to start, never falling back to the one frozen into the package."""
+    common = scripts / "jxl_photo_common.py"
+    if not common.is_file():
+        return                                   # a package of an older jxl-photo
+    probe = [str(exe), str(scripts / "jxl_tiff_encoder.py"), "--version"]
+    run = lambda: subprocess.run(  # noqa: E731
+        probe, capture_output=True, text=True, encoding="utf-8", errors="replace",
+        stdin=subprocess.DEVNULL, timeout=120)
+    ok = run()
+    assert ok.returncode == 0, (ok.returncode, ok.stdout, ok.stderr)
+    aside = common.with_name("jxl_photo_common.py.aside")
+    common.rename(aside)
+    try:
+        bad = run()
+    finally:
+        aside.rename(common)
+    assert bad.returncode != 0 and "jxl_photo_common.py is missing" in bad.stderr, \
+        (bad.returncode, bad.stdout, bad.stderr)
+    print("common module: the program runs the copy in scripts\\ "
+          f"({ok.stdout.strip()})", flush=True)
 
 
 def main():
@@ -49,6 +75,7 @@ def main():
         shutil.copytree(app, hostile)
         app = hostile
     exe, scripts, tools = app / "jxl-photo.exe", app / "scripts", app / "tools"
+    _check_common_module(exe, scripts)
     repo = Path(os.environ.get("JXLPHOTO_REPO", ROOT.parent / "jxl-photo"))
 
     # Only the bundled tools: drop every PATH entry holding one of them.

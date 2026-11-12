@@ -25,7 +25,7 @@ output are unchanged. No line of jxl-photo is modified.
 
 PyInstaller builds a one-folder program: `jxl-photo.exe` plus `_internal\`
 with Python 3.12 and every module the scripts import. To find those modules,
-the build imports the five scripts as modules (`hiddenimports` in
+the build imports the scripts as modules (`hiddenimports` in
 `jxl-photo.spec`), and collects imagecodecs, tifffile and rich completely
 (their codecs and data files are loaded dynamically). The scripts also ship
 as plain `.py` files in `scripts\`: that is what runs, and what the wizard
@@ -109,8 +109,9 @@ placed in `scripts\` would also be used instead of the one in
 
 1. creates `.venv` with the pinned packages and PyInstaller;
 2. downloads the jxl-photo tag `JXLPHOTO_TAG` from GitHub, takes the five
-   scripts and the license, and checks that their `TOOLKIT_VERSION` matches
-   the tag;
+   scripts, `jxl_photo_common.py` (the code they share, since jxl-photo
+   v2.29.0) and the license, and checks that their `TOOLKIT_VERSION`
+   matches the tag;
 3. downloads the three tools, checks each SHA-256, and copies what is needed
    into `build\app\tools`;
 4. runs PyInstaller with `jxl-photo.spec` (the Windows version information

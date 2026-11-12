@@ -11,8 +11,9 @@ ImageMagick) come in the same folder. Unzip and run.
 > is a newer way of packaging the same scripts, meant for people who would
 > rather not install Python and the tools themselves.
 
-**Current version: v2.28.0-exe1** (2026-11-11) · packages jxl-photo
-[v2.28.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.28.0) ·
+**Current version: v2.29.0_beta1-exe1** (2026-11-12, pre-release; last stable:
+[v2.28.0-exe1](https://github.com/rsilvabr/jxl-photo-exe/releases/tag/v2.28.0-exe1)) · packages jxl-photo
+[v2.29.0_beta1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.29.0_beta1) ·
 libjxl 0.12.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
 jxl-thumb 0.2.2 ·
 [All releases](docs/version_history.md) · [How it works](docs/how_it_works.md) ·
@@ -44,7 +45,7 @@ Everything it does is described in its own
 [README](https://github.com/rsilvabr/jxl-photo#readme) and documentation;
 this repository only packages it:
 
-- The five jxl-photo scripts inside are **byte-for-byte** those of the
+- The jxl-photo scripts inside are **byte-for-byte** those of the
   jxl-photo release named above. No feature is added or removed.
 - A small launcher starts them, and puts the bundled tools first on `PATH`.
 - Each version of this package names the jxl-photo version it carries
@@ -176,7 +177,7 @@ the thumbnail offer is kept in `%LOCALAPPDATA%\jxl-photo\exe.json`.
 | Path | What |
 |---|---|
 | `jxl-photo.exe`, `_internal\` | Python 3.12 and the libraries the scripts use (numpy, tifffile, imagecodecs, Pillow, rich) |
-| `scripts\` | The five jxl-photo scripts, unchanged |
+| `scripts\` | The jxl-photo scripts, unchanged: the five and `jxl_photo_common.py`, the code they share |
 | `tools\libjxl\` | `cjxl.exe`, `djxl.exe`, `jxlinfo.exe` — official libjxl 0.12.0 static build |
 | `tools\exiftool\` | ExifTool 13.59 (Windows build) |
 | `tools\imagemagick\` | `magick.exe` 7.1.2-27 portable (Q16-HDRI) and its configuration |

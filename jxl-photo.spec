@@ -1,5 +1,5 @@
 # PyInstaller spec for jxl-photo.exe (a one-folder build). Run through build.py,
-# which first puts the five jxl-photo scripts in build/app/scripts.
+# which first puts the jxl-photo scripts in build/app/scripts.
 import os
 from PyInstaller.utils.hooks import collect_all
 
@@ -9,7 +9,10 @@ SCRIPTS = os.path.join("build", "app", "scripts")
 # use (numpy, tifffile, imagecodecs, Pillow, rich and the standard library);
 # they also ship as plain .py files in scripts/, which is what actually runs.
 hidden = ["jxl_tiff_encoder", "jxl_tiff_decoder", "jxl_recompressor",
-          "jxl_jpeg_transcoder", "jxl_photo"]
+          "jxl_jpeg_transcoder", "jxl_photo",
+          # Loaded by path from scripts/ (each script's _import_common), so the
+          # analysis does not see the import: named here for what IT imports.
+          "jxl_photo_common"]
 datas, binaries = [], []
 for pkg in ("imagecodecs", "tifffile", "rich"):
     d, b, h = collect_all(pkg)
