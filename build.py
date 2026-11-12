@@ -22,7 +22,7 @@ import zipfile
 from pathlib import Path
 
 # --- settings --------------------------------------------------------------
-JXLPHOTO_TAG = "v2.29.0_beta1"
+JXLPHOTO_TAG = "v2.29.1"
 # Package revision for this jxl-photo tag: v2.16.0 + 1 -> release "v2.16.0-exe1".
 PACKAGE_REVISION = 1
 TOOLS = {
