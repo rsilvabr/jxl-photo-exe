@@ -22,13 +22,13 @@ import zipfile
 from pathlib import Path
 
 # --- settings --------------------------------------------------------------
-JXLPHOTO_TAG = "v2.30.1-rc1"
+JXLPHOTO_TAG = "v2.30.1-rc2"
 # Package revision for this jxl-photo tag: v2.16.0 + 1 -> release "v2.16.0-exe1".
 PACKAGE_REVISION = 1
 TOOLS = {
-    "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.12.0/"
+    "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.13.0/"
                "jxl-x64-windows-static.7z",
-               "ff147dc7ac4ce55392974ccc70f2a8a8ec0eff3ae28529b072258b66c8f01ab2"),
+               "d97b753ffcd0f992db2ab3ef7e896a6ba425cafe8332e5e6df6376f70e2b9ada"),
     "exiftool": ("https://sourceforge.net/projects/exiftool/files/"
                  "exiftool-13.59_64.zip/download",
                  "44b512b25af500724ba579d0a53c8fc5851628b692dd5e5d94ae4a15c2cba9ec"),
