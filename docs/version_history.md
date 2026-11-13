@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.30.0-exe1](#v2300-exe1)** | 2026-11-13 | v2.30.0 | jxl-photo v2.30.0: faster metadata writing (one ExifTool process per file); flags must be written in full; each output's history names the libjxl version; modes 6/7 of the decoder and the transcoder with an output folder land next to the library's own export folder |
+| **[v2.30.1-rc1-exe1](#v2301-rc1-exe1)** | 2026-11-13 | v2.30.1-rc1 | Pre-release (test releases are now named `-rcN`). jxl-photo v2.30.1-rc1: the wizard's manifest check and delete preview read every option the run gets; a file row in mode 2 with an empty Destination runs; the count and the check as fast as before v2.30.0 |
+| [v2.30.0-exe1](#v2300-exe1) | 2026-11-13 | v2.30.0 | jxl-photo v2.30.0: faster metadata writing (one ExifTool process per file); flags must be written in full; each output's history names the libjxl version; modes 6/7 of the decoder and the transcoder with an output folder land next to the library's own export folder |
 | [v2.30.0_beta1-exe1](#v2300_beta1-exe1) | 2026-11-13 | v2.30.0_beta1 | Pre-release. jxl-photo v2.30.0_beta1: faster metadata writing (one ExifTool process per file); flags must be written in full; each output's history names the libjxl version; a PNG named `.jpg` is refused by the lossless JPEG transcode |
 | [v2.29.1-exe1](#v2291-exe1) | 2026-11-13 | v2.29.1 | jxl-photo v2.29.1: the first stable release with the code the scripts share in one file (`scripts\jxl_photo_common.py`); yes/no answers read the same way on both wizard screens; the scripts' detail lines reach the log file |
 | [v2.29.0_beta1-exe1](#v2290_beta1-exe1) | 2026-11-12 | v2.29.0_beta1 | Pre-release. jxl-photo v2.29.0_beta1: the code the scripts share ships as a sixth file, `scripts\jxl_photo_common.py`; nothing changes in what the program does |
@@ -43,6 +44,22 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.30.1-rc1-exe1
+
+*2026-11-13.* Pre-release: a test release of jxl-photo v2.30.1. The last
+stable package is v2.30.0-exe1. Test releases are now named `-rcN` (release
+candidate) instead of `_betaN`: the name is what each file converted with the
+program records in its history.
+
+- jxl-photo [v2.30.1-rc1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.30.1-rc1):
+  the wizard's manifest check and delete preview read every option the run
+  gets (a resize, the output folder name, the expert flags); a manifest row
+  whose Source is a single file runs in mode 2 with an empty Destination; the
+  file count and the manifest check of a JPEG ↔ JXL run are as fast as before
+  v2.30.0. A copy on a test release is told when its final release is out.
+  Nothing to do: unzip over the old folder as usual.
+- Same tools as v2.30.0-exe1 (jxl-thumb 0.2.2).
 
 ## v2.30.0-exe1
 
