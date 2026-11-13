@@ -48,7 +48,7 @@ start inherit the same `PATH`.
 | cjxl, djxl, jxlinfo | libjxl 0.13.0 official `jxl-x64-windows-static.7z` (its GitHub build attestation checked) | static, no DLLs |
 | ExifTool 13.59 | the official Windows build | `exiftool(-k).exe` is renamed `exiftool.exe`: the `(-k)` name waits for a key press after every call |
 | ImageMagick 7.1.2-27 | official portable Q16-HDRI x64 | only `magick.exe` and its `.xml`/`.icc` configuration; the other programs in the archive are aliases of it |
-| jxl-thumb 0.2.2 | its GitHub release zip | not on `PATH`: an Explorer thumbnail handler, installed only on request (below) |
+| jxl-thumb 0.2.3 | its GitHub release zip | not on `PATH`: an Explorer thumbnail handler, installed only on request (below) |
 
 ExifTool's Windows launcher finds its `exiftool_files` folder through an
 ANSI path, so it cannot start from a folder whose name is outside the ANSI

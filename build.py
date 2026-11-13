@@ -24,7 +24,7 @@ from pathlib import Path
 # --- settings --------------------------------------------------------------
 JXLPHOTO_TAG = "v2.30.1-rc2"
 # Package revision for this jxl-photo tag: v2.16.0 + 1 -> release "v2.16.0-exe1".
-PACKAGE_REVISION = 1
+PACKAGE_REVISION = 2
 TOOLS = {
     "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.13.0/"
                "jxl-x64-windows-static.7z",
@@ -35,9 +35,9 @@ TOOLS = {
     "imagemagick": ("https://github.com/ImageMagick/ImageMagick/releases/download/"
                     "7.1.2-27/ImageMagick-7.1.2-27-portable-Q16-HDRI-x64.7z",
                     "c7d6f13b3021db5d2e23876d85f06d6039a9a345236f0d32cdb73886ddfe70ed"),
-    "jxl-thumb": ("https://github.com/rsilvabr/jxl-thumb/releases/download/v0.2.2/"
-                  "jxl-thumb-0.2.2-x64.zip",
-                  "27dc9295aa5c2b1347cace063bdca88d607c0f549dfc013abc4d0d26341c9dbc"),
+    "jxl-thumb": ("https://github.com/rsilvabr/jxl-thumb/releases/download/v0.2.3/"
+                  "jxl-thumb-0.2.3-x64.zip",
+                  "869035bc69b8f01d008cc5f5949409b84c5303417fe5ab3f4663205f4832aa50"),
 }
 REQUIREMENTS = ["numpy==2.5.1", "tifffile==2026.6.1", "imagecodecs==2026.6.26",
                 "pillow==12.3.0", "rich==15.0.0", "pyinstaller==6.22.2"]

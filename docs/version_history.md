@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.30.1-rc2-exe1](#v2301-rc2-exe1)** | 2026-11-14 | v2.30.1-rc2 | Pre-release. **libjxl 0.13.0** (security fixes); jxl-photo v2.30.1-rc2: with it, a JPEG archive is still rebuilt bit for bit by every libjxl since 0.11, and a lossy encode keeps an all-opaque alpha |
+| **[v2.30.1-rc2-exe2](#v2301-rc2-exe2)** | 2026-11-14 | v2.30.1-rc2 | Pre-release. jxl-thumb 0.2.3, built with libjxl 0.13.0 (security fixes); the same thumbnails |
+| [v2.30.1-rc2-exe1](#v2301-rc2-exe1) | 2026-11-14 | v2.30.1-rc2 | Pre-release. **libjxl 0.13.0** (security fixes); jxl-photo v2.30.1-rc2: with it, a JPEG archive is still rebuilt bit for bit by every libjxl since 0.11, and a lossy encode keeps an all-opaque alpha |
 | [v2.30.1-rc1-exe1](#v2301-rc1-exe1) | 2026-11-13 | v2.30.1-rc1 | Pre-release (test releases are now named `-rcN`). jxl-photo v2.30.1-rc1: the wizard's manifest check and delete preview read every option the run gets; a file row in mode 2 with an empty Destination runs; the count and the check as fast as before v2.30.0 |
 | [v2.30.0-exe1](#v2300-exe1) | 2026-11-13 | v2.30.0 | jxl-photo v2.30.0: faster metadata writing (one ExifTool process per file); flags must be written in full; each output's history names the libjxl version; modes 6/7 of the decoder and the transcoder with an output folder land next to the library's own export folder |
 | [v2.30.0_beta1-exe1](#v2300_beta1-exe1) | 2026-11-13 | v2.30.0_beta1 | Pre-release. jxl-photo v2.30.0_beta1: faster metadata writing (one ExifTool process per file); flags must be written in full; each output's history names the libjxl version; a PNG named `.jpg` is refused by the lossless JPEG transcode |
@@ -45,6 +46,17 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.30.1-rc2-exe2
+
+*2026-11-14.* Pre-release, like v2.30.1-rc2-exe1. The last stable package is
+v2.30.0-exe1.
+
+- jxl-thumb [0.2.3](https://github.com/rsilvabr/jxl-thumb/releases/tag/v0.2.3):
+  built with libjxl 0.13.0, so the Explorer thumbnails get its security fixes
+  too; the thumbnails are the same as 0.2.2's, pixel for pixel. A PC with an
+  older jxl-thumb installed is offered the update once, as before.
+- Same jxl-photo (v2.30.1-rc2) and other tools as v2.30.1-rc2-exe1.
 
 ## v2.30.1-rc2-exe1
 

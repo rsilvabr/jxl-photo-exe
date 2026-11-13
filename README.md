@@ -11,11 +11,11 @@ ImageMagick) come in the same folder. Unzip and run.
 > is a newer way of packaging the same scripts, meant for people who would
 > rather not install Python and the tools themselves.
 
-**Current version: v2.30.1-rc2-exe1** (2026-11-14, pre-release; last stable:
+**Current version: v2.30.1-rc2-exe2** (2026-11-14, pre-release; last stable:
 [v2.30.0-exe1](https://github.com/rsilvabr/jxl-photo-exe/releases/tag/v2.30.0-exe1)) · packages jxl-photo
 [v2.30.1-rc2](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.30.1-rc2) ·
 libjxl 0.13.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
-jxl-thumb 0.2.2 ·
+jxl-thumb 0.2.3 ·
 [All releases](docs/version_history.md) · [How it works](docs/how_it_works.md) ·
 [Bug tracking](docs/bug_tracking.md)
 
@@ -181,7 +181,7 @@ the thumbnail offer is kept in `%LOCALAPPDATA%\jxl-photo\exe.json`.
 | `tools\libjxl\` | `cjxl.exe`, `djxl.exe`, `jxlinfo.exe` — official libjxl 0.13.0 static build |
 | `tools\exiftool\` | ExifTool 13.59 (Windows build) |
 | `tools\imagemagick\` | `magick.exe` 7.1.2-27 portable (Q16-HDRI) and its configuration |
-| `tools\jxl-thumb\` | jxl-thumb 0.2.2 (Explorer thumbnails), with its own install/uninstall scripts |
+| `tools\jxl-thumb\` | jxl-thumb 0.2.3 (Explorer thumbnails), with its own install/uninstall scripts |
 | `licenses\` | The licenses of everything above, Python's included (gathered by `build.py` from each download, so the folder is in the package, not in this repository) |
 
 The program always uses its own tools, even when other versions are
