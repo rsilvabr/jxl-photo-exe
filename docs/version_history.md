@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.30.0_beta1-exe1](#v2300_beta1-exe1)** | 2026-11-13 | v2.30.0_beta1 | Pre-release. jxl-photo v2.30.0_beta1: faster metadata writing (one ExifTool process per file); flags must be written in full; each output's history names the libjxl version; a PNG named `.jpg` is refused by the lossless JPEG transcode |
+| **[v2.30.0-exe1](#v2300-exe1)** | 2026-11-13 | v2.30.0 | jxl-photo v2.30.0: faster metadata writing (one ExifTool process per file); flags must be written in full; each output's history names the libjxl version; modes 6/7 of the decoder and the transcoder with an output folder land next to the library's own export folder |
+| [v2.30.0_beta1-exe1](#v2300_beta1-exe1) | 2026-11-13 | v2.30.0_beta1 | Pre-release. jxl-photo v2.30.0_beta1: faster metadata writing (one ExifTool process per file); flags must be written in full; each output's history names the libjxl version; a PNG named `.jpg` is refused by the lossless JPEG transcode |
 | [v2.29.1-exe1](#v2291-exe1) | 2026-11-13 | v2.29.1 | jxl-photo v2.29.1: the first stable release with the code the scripts share in one file (`scripts\jxl_photo_common.py`); yes/no answers read the same way on both wizard screens; the scripts' detail lines reach the log file |
 | [v2.29.0_beta1-exe1](#v2290_beta1-exe1) | 2026-11-12 | v2.29.0_beta1 | Pre-release. jxl-photo v2.29.0_beta1: the code the scripts share ships as a sixth file, `scripts\jxl_photo_common.py`; nothing changes in what the program does |
 | [v2.28.0-exe1](#v2280-exe1) | 2026-11-11 | v2.28.0 | jxl-photo v2.28.0: a TIFF's small Photoshop resource block comes back in the decoded TIFF; JPEG/PNG copies drop the TIFF-tag markers; no copy of a camera TIFF's thumbnail page; resized copies work in a folder named like `100%off` |
@@ -43,9 +44,24 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 ---
 
+## v2.30.0-exe1
+
+*2026-11-13.* Supersedes v2.30.0_beta1-exe1.
+
+- jxl-photo [v2.30.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.30.0):
+  everything in the pre-release (one ExifTool process per file, flags written
+  in full, the libjxl version in each output's history, a PNG named `.jpg`
+  refused by the lossless JPEG transcode), plus: the decoder and the JPEG
+  transcoder, in modes 6/7 with an output folder, put their outputs next to
+  the library's own export folder even when a folder like `Lightroom_Export`
+  sits above it; the wizard's delete preview and manifest check ask the
+  scripts where each file goes; `--help` written to a file no longer fails on
+  a Japanese folder name. Nothing to do: unzip over the old folder as usual.
+- Same tools as v2.30.0_beta1-exe1 (jxl-thumb 0.2.2).
+
 ## v2.30.0_beta1-exe1
 
-*2026-11-13, pre-release. The last stable package is v2.29.1-exe1.*
+*2026-11-13, pre-release. Superseded by v2.30.0-exe1. The last stable package before it is v2.29.1-exe1.*
 
 - jxl-photo [v2.30.0_beta1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.30.0_beta1):
   each file's metadata is written by one ExifTool process instead of several
