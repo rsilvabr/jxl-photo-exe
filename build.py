@@ -22,9 +22,9 @@ import zipfile
 from pathlib import Path
 
 # --- settings --------------------------------------------------------------
-JXLPHOTO_TAG = "v2.30.1-rc2"
+JXLPHOTO_TAG = "v2.30.1"
 # Package revision for this jxl-photo tag: v2.16.0 + 1 -> release "v2.16.0-exe1".
-PACKAGE_REVISION = 2
+PACKAGE_REVISION = 1
 TOOLS = {
     "libjxl": ("https://github.com/libjxl/libjxl/releases/download/v0.13.0/"
                "jxl-x64-windows-static.7z",

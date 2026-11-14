@@ -11,9 +11,8 @@ ImageMagick) come in the same folder. Unzip and run.
 > is a newer way of packaging the same scripts, meant for people who would
 > rather not install Python and the tools themselves.
 
-**Current version: v2.30.1-rc2-exe2** (2026-11-14, pre-release; last stable:
-[v2.30.0-exe1](https://github.com/rsilvabr/jxl-photo-exe/releases/tag/v2.30.0-exe1)) · packages jxl-photo
-[v2.30.1-rc2](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.30.1-rc2) ·
+**Current version: v2.30.1-exe1** (2026-11-14) · packages jxl-photo
+[v2.30.1](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.30.1) ·
 libjxl 0.13.0 · ExifTool 13.59 · ImageMagick 7.1.2-27 (Q16-HDRI) ·
 jxl-thumb 0.2.3 ·
 [All releases](docs/version_history.md) · [How it works](docs/how_it_works.md) ·
