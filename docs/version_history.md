@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.30.2-rc1-exe1](#v2302-rc1-exe1)** | 2026-11-14 | v2.30.2-rc1 | Pre-release. jxl-photo v2.30.2-rc1: Explorer thumbnails no longer write the whole photo to the temp folder (the same thumbnails, much faster on a slow temp disk) |
+| **[v2.30.2-rc2-exe1](#v2302-rc2-exe1)** | 2026-11-14 | v2.30.2-rc2 | Pre-release. jxl-photo v2.30.2-rc2: copies, decoded TIFFs and the check before a delete without a full-size temporary image; each master written once; planning reads a few KB per JXL; the same files byte for byte |
+| [v2.30.2-rc1-exe1](#v2302-rc1-exe1) | 2026-11-14 | v2.30.2-rc1 | Pre-release. jxl-photo v2.30.2-rc1: Explorer thumbnails no longer write the whole photo to the temp folder (the same thumbnails, much faster on a slow temp disk) |
 | [v2.30.1-exe1](#v2301-exe1) | 2026-11-14 | v2.30.1 | **libjxl 0.13.0** and jxl-thumb 0.2.3 (security fixes); jxl-photo v2.30.1: libjxl 0.13 supported (JPEG archives every libjxl rebuilds bit for bit, alpha kept), the wizard's checks read every option the run gets |
 | [v2.30.1-rc2-exe2](#v2301-rc2-exe2) | 2026-11-14 | v2.30.1-rc2 | Pre-release. jxl-thumb 0.2.3, built with libjxl 0.13.0 (security fixes); the same thumbnails |
 | [v2.30.1-rc2-exe1](#v2301-rc2-exe1) | 2026-11-14 | v2.30.1-rc2 | Pre-release. **libjxl 0.13.0** (security fixes); jxl-photo v2.30.1-rc2: with it, a JPEG archive is still rebuilt bit for bit by every libjxl since 0.11, and a lossy encode keeps an all-opaque alpha |
@@ -48,6 +49,20 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.30.2-rc2-exe1
+
+*2026-11-14.* Pre-release: the second test release of jxl-photo v2.30.2. The
+last stable package is v2.30.1-exe1.
+
+- jxl-photo [v2.30.2-rc2](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.30.2-rc2):
+  resized copies, sRGB JXL copies, decoded TIFFs and the check before a
+  delete no longer write a full-size temporary image (about 230 MB for a
+  45 MP photo); each master is written once instead of seven times; planning
+  reads a few KB of each JXL instead of the whole file. The files come out
+  byte for byte the same, except a resized grey JPEG copy, now marked as a
+  copy (a fix). Nothing to do: unzip over the old folder as usual.
+- Same tools as v2.30.1-exe1 (libjxl 0.13.0, jxl-thumb 0.2.3).
 
 ## v2.30.2-rc1-exe1
 
