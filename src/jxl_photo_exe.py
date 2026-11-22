@@ -338,6 +338,24 @@ def _offer_thumbnail_update() -> None:
     print()
 
 
+def _long_temp_problem():
+    """Why this process cannot start a program, or None — the toolkit's own
+    rule (jxl_photo_common._long_temp_problem, jxl-photo #689: a TMP of 261
+    characters or more hangs Windows inside GetTempPathW whenever a program
+    starts, regsvr32 included), read from the bundled common module under a
+    private name, so the rule has one copy. A module that cannot be read:
+    None (the scripts check again at their start)."""
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "_jxlphoto_common_launcher", str(SCRIPTS / "jxl_photo_common.py"))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod._long_temp_problem()
+    except Exception:
+        return None
+
+
 def main() -> None:
     # A redirected stdout falls back to the ANSI code page, where a program
     # folder named in Japanese cannot be printed (the scripts do the same).
@@ -349,12 +367,23 @@ def main() -> None:
     _setup_environment()
     argv = sys.argv[1:]
     if argv and argv[0].lower() == "thumbnails":
+        # regsvr32 is a program: with a TMP of 261+ characters it would hang
+        # (the toolkit's #689) — say why instead.
+        if argv[1:2] and argv[1].lower() in ("install", "uninstall"):
+            why = _long_temp_problem()
+            if why:
+                print(f"ERROR: {why}")
+                sys.exit(2)
         sys.exit(_thumbnails_command(argv[1:]))
     if not argv:
-        try:
-            _offer_thumbnails()
-        except Exception as exc:   # never keep the wizard from starting
-            print(f"(thumbnail check skipped: {exc})")
+        # The offer may run regsvr32 before the wizard's own check of the
+        # temp folder: with a TMP of 261+ characters it is skipped, and the
+        # wizard says why at its start.
+        if _long_temp_problem() is None:
+            try:
+                _offer_thumbnails()
+            except Exception as exc:   # never keep the wizard from starting
+                print(f"(thumbnail check skipped: {exc})")
     script, args = _resolve(argv)
     sys.argv = [str(script)] + list(args)
     runpy.run_path(str(script), run_name="__main__")

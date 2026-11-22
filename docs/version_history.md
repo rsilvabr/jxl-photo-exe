@@ -6,7 +6,8 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 
 | Version | Date | jxl-photo | Highlights |
 |---------|------|-----------|------------|
-| **[v2.30.2-exe1](#v2302-exe1)** | 2026-11-15 | v2.30.2 | jxl-photo v2.30.2: copies and decodes take between half and a third of the time for a 45 MP photo; far less written to the disk (archiving a 45 MP photo: 79 MB instead of 520 MB); the same files byte for byte |
+| **[v2.31.0-exe1](#v2310-exe1)** | 2026-11-23 | v2.31.0 | jxl-photo v2.31.0: archiving, decoding and deleting about a fifth faster with the same files, sRGB copies 8–38 % faster, safer deletes, VueScan RGB + infrared scans fixed, exact EXIF values; the launcher checks the temp folder before the thumbnail offer |
+| [v2.30.2-exe1](#v2302-exe1) | 2026-11-15 | v2.30.2 | jxl-photo v2.30.2: copies and decodes take between half and a third of the time for a 45 MP photo; far less written to the disk (archiving a 45 MP photo: 79 MB instead of 520 MB); the same files byte for byte |
 | [v2.30.2-rc2-exe1](#v2302-rc2-exe1) | 2026-11-14 | v2.30.2-rc2 | Pre-release. jxl-photo v2.30.2-rc2: copies, decoded TIFFs and the check before a delete without a full-size temporary image; each master written once; planning reads a few KB per JXL; the same files byte for byte |
 | [v2.30.2-rc1-exe1](#v2302-rc1-exe1) | 2026-11-14 | v2.30.2-rc1 | Pre-release. jxl-photo v2.30.2-rc1: Explorer thumbnails no longer write the whole photo to the temp folder (the same thumbnails, much faster on a slow temp disk) |
 | [v2.30.1-exe1](#v2301-exe1) | 2026-11-14 | v2.30.1 | **libjxl 0.13.0** and jxl-thumb 0.2.3 (security fixes); jxl-photo v2.30.1: libjxl 0.13 supported (JPEG archives every libjxl rebuilds bit for bit, alpha kept), the wizard's checks read every option the run gets |
@@ -50,6 +51,28 @@ in [its version history](https://github.com/rsilvabr/jxl-photo/blob/main/docs/ve
 | [v2.15.2-exe1](#v2152-exe1) | 2026-10-22 | v2.15.2 | First package (experimental) |
 
 ---
+
+## v2.31.0-exe1
+
+*2026-11-23.* The stable package after v2.30.2-exe1 (the eight test releases of
+jxl-photo v2.31.0 had no Windows build).
+
+- jxl-photo [v2.31.0](https://github.com/rsilvabr/jxl-photo/releases/tag/v2.31.0):
+  archiving, decoding and deleting runs about a fifth faster with the same
+  files (ExifTool stays open, each decoded TIFF's metadata written once); sRGB
+  copies 8–38 % faster; many edge cases closed in what a run that deletes
+  keeps; VueScan RGB + infrared scans no longer get their infrared taken for
+  transparency; EXIF values copied exactly. A few command lines behave
+  differently — see jxl-photo's
+  [upgrading notes](https://github.com/rsilvabr/jxl-photo/blob/v2.31.0/docs/upgrading.md);
+  otherwise unzip over the old folder as usual.
+- The launcher checks the temp folder before it offers or installs the
+  Explorer thumbnails: with a TMP of 261 characters or more, Windows hangs any
+  program a process starts (regsvr32 included), so the offer is skipped and
+  `thumbnails install` says why (the scripts refuse such a TMP since jxl-photo
+  v2.31.0, jxl-photo #689).
+- Same tools as v2.30.2-exe1 (libjxl 0.13.0, ExifTool 13.59, ImageMagick
+  7.1.2-27, jxl-thumb 0.2.3).
 
 ## v2.30.2-exe1
 
